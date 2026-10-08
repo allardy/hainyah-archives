@@ -1,0 +1,9 @@
+/* Font Document */
+/* Archive note: the 2012 site shipped Monotype Corsiva (MTCORSVA.eot/.woff/.ttf/.svg) here. It is a commercial font and is not
+   redistributed; visitors who have it installed (it comes with Microsoft Office) still see it, everyone else gets a cursive fallback. */
+@font-face {
+	font-family: 'Conv_MTCORSVA';
+	src: local('Monotype Corsiva'), local('MonotypeCorsiva'), local('MTCORSVA');
+	font-weight: 300;
+	font-style: normal;
+}

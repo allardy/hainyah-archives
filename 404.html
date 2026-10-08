@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page introuvable — Archives HainyaH</title>
+<meta name="robots" content="noindex">
+<!-- Pages serves this file for any missing path, at any depth, so relative links would point nowhere: the styles are inline and the links
+     are rewritten to the site's root, which is the repository's folder on github.io and the domain root on a custom domain. -->
+<style>
+body { margin: 0; background: #000; color: #c9c5a8; font: 17px/1.6 Georgia, 'Times New Roman', serif }
+main { max-width: 640px; margin: 0 auto; padding: 15vh 16px 48px; text-align: center }
+h1 { color: #cccc99; font-weight: normal; font-size: 32px; margin: 0 0 8px }
+a { color: #e0d890 }
+</style>
+</head>
+<body>
+<main>
+<h1>Cette page n'a pas été retrouvée</h1>
+<p>Elle n'a peut-être jamais été conservée, ou son adresse a changé.</p>
+<p><a class="root" href="./">Retour aux archives</a> · <a class="root" href="./" data-path="guide/Guide.htm">Le guide</a></p>
+</main>
+<script>
+  const base = location.hostname.endsWith('github.io') ? '/' + location.pathname.split('/')[1] + '/' : '/'
+  for (const a of document.querySelectorAll('a.root')) a.href = base + (a.dataset.path || '')
+</script>
+</body>
+</html>

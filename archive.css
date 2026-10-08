@@ -1,0 +1,307 @@
+/* The archive's own pages: the landing, the gallery, the homepage timeline. The archived pages keep their own 2003–2012 styles.
+   Colours are the game's (packages/web/DESIGN.md in the game repository): black ground, #999966 ink, gold titles, parchment. */
+
+:root {
+  --ground: #000;
+  --panel: #12110c;
+  --edge: #3a3826;
+  --ink: #c9c5a8;
+  --ink-soft: #999966;
+  --gold: #cccc99;
+  --parchment: #ffffcc;
+  --link: #e0d890;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font: 17px/1.6 Georgia, 'Times New Roman', serif;
+}
+
+a {
+  color: var(--link);
+}
+
+.bar {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--edge);
+  font-size: 15px;
+}
+
+.bar a {
+  text-decoration: none;
+  color: var(--gold);
+}
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+main.wide {
+  max-width: 1200px;
+}
+
+h1,
+h2 {
+  color: var(--gold);
+  font-weight: normal;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: 2.2em;
+  margin: 0.4em 0 0.2em;
+}
+
+h2 small {
+  font-size: 0.55em;
+  color: var(--ink-soft);
+}
+
+.lead {
+  font-size: 1.1em;
+}
+
+.logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 8px auto 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.card {
+  display: block;
+  padding: 16px;
+  border: 1px solid var(--edge);
+  background: var(--panel);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.card:hover {
+  border-color: var(--ink-soft);
+}
+
+.card strong {
+  display: block;
+  color: var(--gold);
+  font-size: 1.2em;
+  font-weight: normal;
+  margin-bottom: 4px;
+}
+
+.card.soon {
+  opacity: 0.6;
+}
+
+.note {
+  font-size: 0.9em;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--edge);
+  padding-top: 16px;
+  margin-top: 48px;
+}
+
+.toc {
+  margin: 16px 0 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+figure {
+  margin: 0;
+  padding: 8px;
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  text-align: center;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  max-height: 160px;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+figcaption {
+  font-size: 12px;
+  line-height: 1.4;
+  word-break: break-all;
+  margin-top: 6px;
+}
+
+figcaption span {
+  color: var(--ink-soft);
+}
+
+.years {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.years button {
+  font: inherit;
+  color: var(--gold);
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.years button[aria-pressed='true'] {
+  border-color: var(--gold);
+  color: var(--parchment);
+}
+
+.frame {
+  width: 100%;
+  height: 80vh;
+  border: 1px solid var(--edge);
+  background: #000;
+}
+
+.mur {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.vignette {
+  display: block;
+  border: 1px solid var(--edge);
+  background: var(--panel);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.vignette:hover {
+  border-color: var(--gold);
+}
+
+.vignette img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.vignette span {
+  display: block;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.vignette strong {
+  display: block;
+  color: var(--gold);
+  font-weight: normal;
+}
+
+.paires {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.paire {
+  padding: 8px;
+}
+
+.cote {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.case {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.case img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* The 2010 image, scaled without smoothing, so its own pixels are what is compared. */
+.case img.ancien {
+  image-rendering: pixelated;
+}
+
+/* Landing: the two creators, as the gods they became in the game's story. */
+.createurs {
+  margin: 32px 0;
+  text-align: center;
+}
+
+.createurs h2 {
+  margin-bottom: 8px;
+}
+
+.dieux {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.dieux figure {
+  width: 200px;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+
+.dieux img {
+  display: block;
+  width: 200px;
+  height: 200px;
+  max-height: none;
+  object-fit: contain;
+  background: #000;
+  border: 1px solid var(--edge);
+}
+
+.dieux figcaption {
+  font-size: 15px;
+  word-break: normal;
+  margin-top: 10px;
+  color: var(--ink-soft);
+  display: grid;
+}
+
+.dieux figcaption strong {
+  color: var(--gold);
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.dieux figcaption span {
+  color: var(--parchment);
+  margin-top: 4px;
+}

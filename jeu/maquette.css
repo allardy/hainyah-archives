@@ -1,0 +1,33 @@
+/* The archive's one addition to the 2010 skin: a thin band saying what this is. Everything else is palette.css, untouched. */
+.maquette-bandeau {
+  font: 13px/1.4 Georgia, 'Times New Roman', serif;
+  color: #cccc99;
+  background: #1a1a10;
+  border-bottom: 1px solid #3a3826;
+  padding: 6px 12px;
+  text-align: center;
+}
+
+.maquette-bandeau a {
+  color: #e0d890;
+}
+
+.maquette-note {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 32px);
+  padding: 10px 16px;
+  font: 14px/1.4 Georgia, 'Times New Roman', serif;
+  color: #ffffcc;
+  background: #1a1a10;
+  border: 1px solid #999977;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.maquette-note.visible {
+  opacity: 1;
+}

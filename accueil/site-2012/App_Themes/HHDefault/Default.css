@@ -1,0 +1,455 @@
+body
+{
+	background: #000000 url(Images/mainPage/WallpaperHainyah.jpg) repeat center fixed;
+    font-family: Times New Roman, Tahoma, Sans-Serif;
+    color: #D0CF9F;
+}
+
+/*EntêteMain*/
+.enteteLogo
+{
+    background: url(Images/mainPage/MainLogoHainyah.png) no-repeat;
+    width: 680px;
+    height: 279px;
+    position: relative;
+}
+.enteteTitre
+{
+    background: url(Images/mainPage/MainLogoHainyahTitre.png) no-repeat;
+    width: 183px;
+    height: 28px;
+    position: absolute;
+    left: 248px;
+    top: 224px;
+    text-align: center;
+    padding-top: 2px;  
+    color: #000000;
+    font-weight: 600;
+}
+
+/*EntêteMain bouton */
+.enteteContentBouton
+{
+    width: 680px;
+    height: 92px;
+    position: relative;
+	border: 0px solid;
+}
+
+.enteteBouton1
+{
+    background: url(Images/mainPage/MainBoutonGuide1.jpg);  
+    left: 0px;
+}
+.enteteBouton2
+{
+    background: url(Images/mainPage/MainBoutonInscript1.jpg);
+    left: 226px;
+}
+.enteteBouton3
+{
+    background: url(Images/mainPage/MainBoutonForum1.jpg);
+    left: 452px;
+}
+.enteteBouton1:hover
+{
+    background: url(Images/mainPage/MainBoutonGuide2.jpg);
+    left: 0px;
+}
+.enteteBouton2:hover
+{
+    background: url(Images/mainPage/MainBoutonInscript2.jpg);
+    left: 226px;
+}
+.enteteBouton3:hover
+{
+    background: url(Images/mainPage/MainBoutonForum2.jpg);
+    left: 452px;
+}
+.enteteBouton1:hover, .enteteBouton2:hover, .enteteBouton3:hover, .enteteBouton1, .enteteBouton2, .enteteBouton3
+{
+    background-repeat: no-repeat;
+    width: 226px;
+    height: 92px;
+    position: absolute;
+}
+
+/*EntêteMain content1*/
+.enteteContent
+{
+    background: url(Images/Detail/MainBaseContent.jpg) repeat;
+    width: 680px;
+    height: 620px;
+    position: relative;
+	border: 0px solid;
+}
+.enteteContentFin
+{
+    background: url(Images/Detail/MainBaseContent2.jpg) no-repeat;
+    width: 680px;
+    height: 60px;
+    position: relative;
+    z-index: 4;
+	border: 0px solid;
+}
+.enteteContentText
+{
+	width: 300px;
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #FFFFCC;
+	text-align: left;
+	border: 0px solid;
+	float: left;
+}
+.enteteContentText2
+{
+	width: 300px;
+    position: relative;
+	margin-top: 6px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #FFFFCC;
+	float: right;
+}
+.enteteContentText2H
+{
+	width: 300px;
+	height: 220px;
+    color: #FFFFCC;
+	border: 0px solid;
+}
+.enteteContentText2B
+{
+	width: 300px;
+    position: relative;
+    color: #FFFFCC;
+	border: 0px solid;
+	text-align: left;
+}
+
+.mainHai
+{  
+    background: url(Images/mainPage/Hai.png) no-repeat;
+    width: 193px;
+    height: 177px;
+    position: absolute;
+    top: 0px;
+    left: -40px;
+	border: 0px solid;
+    z-index: 6;
+}
+
+/*GestionMain*/
+.enteteGestion
+{  
+    width: 181px;
+    height: 180px;
+	color: #333333;
+    z-index: 5;
+}
+.enteteGestionHaut
+{
+    background: url(Images/Parchemin/pHaut2.png) no-repeat;
+    width: 181px;
+    height: 26px;
+}
+.enteteGestionMilieu
+{
+    background: url(Images/Parchemin/pMilieu2.png) repeat-y;
+    width: 181px;
+    text-align: center;
+	font-style: normal;
+}
+.enteteGestionBas
+{
+    background: url(Images/Parchemin/pBas2.png) no-repeat;
+    width: 181px;
+    height: 26px;
+}
+
+/*Bordure*/
+.enteteBordureHorizontal
+{
+    background: url(Images/Detail/MainBordureHorizontal.jpg) no-repeat;
+    width: 781px;
+    height: 26px;
+	position: relative;
+    left: 0px;
+}
+.enteteBordureVerticalGauche
+{
+    background: url(Images/Detail/MainBordureVerticalGauche.jpg) repeat-y;
+    width: 25px;
+    height: 595px;
+	float: left;
+    margin-left: 0px;
+}
+.enteteBordureVerticalDroite
+{
+    background: url(Images/Detail/MainBordureVerticalDroite.jpg) repeat-y;
+    width: 25px;
+    height: 595px;
+	float: right;
+    margin-right: 0px;
+}
+
+/*Inscription*/
+.pHaut
+{
+    background: url(Images/Parchemin/pHaut.png) no-repeat;
+    width: 623px;
+    height: 83px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.pMilieu
+{
+    background: url(Images/Parchemin/pMilieu.png) repeat-y;
+    width: 623px;
+    height: 100%;
+	color: #333333;
+    margin-left: auto;
+    margin-right: auto;
+}
+.pBas
+{
+    background: url(Images/Parchemin/pBas.png) no-repeat;
+    width: 623px;
+    height: 73px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Info*/
+.pInfo
+{
+	background: #b8854d url(Images/Parchemin/pMilieu3.jpg) repeat-y;
+	border: #b8854d 1px solid;
+	width: 183px;
+	height: auto;
+	min-height: 25px;
+	top: 22px;
+	left: -175px;
+	padding-left: 8px;
+	position: absolute;
+	color: #333333;
+	text-align: left;
+    font-style: normal;
+    font-weight: normal;
+	font-size: 14px;
+}
+.pInfo2
+{
+	background: #b8854d url(Images/Parchemin/pMilieu3.jpg) repeat-y;
+	border: #b8854d 1px solid;
+	width: 183px;
+	height: auto;
+	min-height: 25px;
+	bottom: 22px;
+	left: -175px;
+	padding-left: 8px;
+	position: absolute;
+	color: #333333;
+	text-align: left;
+    font-style: normal;
+    font-weight: normal;
+	font-size: 14px;
+}
+.pInfo3
+{
+	background: #b8854d url(Images/Parchemin/pMilieu3.jpg) repeat-y;
+	border: #b8854d 1px solid;
+	width: 183px;
+	height: auto;
+	min-height: 25px;
+	bottom: 22px;
+	left: 0px;
+	padding-left: 8px;
+	position: absolute;
+	color: #333333;
+	text-align: left;
+    font-style: normal;
+    font-weight: normal;
+	font-size: 14px;
+}
+.pInfo4
+{
+	background: #b8854d url(Images/Parchemin/pMilieu3.jpg) repeat-y;
+	border: #b8854d 1px solid;
+	width: 183px;
+	height: auto;
+	min-height: 25px;
+	top: 22px;
+	left: 0px;
+	padding-left: 8px;
+	position: absolute;
+	color: #333333;
+	text-align: left;
+    font-style: normal;
+    font-weight: normal;
+	font-size: 14px;
+}
+.pInfo5
+{
+	background: #b8854d url(Images/Parchemin/pMilieu4.jpg) repeat-y;
+	border: #b8854d 1px solid;
+	width: 388px;
+	height: auto;
+	min-height: 25px;
+	top: 22px;
+	left: -319px;
+	padding-left: 8px;
+	position: absolute;
+	color: #333333;
+	text-align: left;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+}
+.pInfo6
+{
+	background: #b8854d url(Images/Parchemin/pMilieu4.jpg) repeat-y;
+	border: #b8854d 1px solid;
+	width: 388px;
+	height: auto;
+	min-height: 25px;
+	top: 22px;
+	left: -200px;
+	padding-left: 8px;
+	position: absolute;
+	color: #333333;
+	text-align: left;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+}
+.info:hover
+{
+	overflow: visible;
+	z-index: 6;
+	
+}
+.info 
+{
+	background: url(Images/Parchemin/intero.png) no-repeat;
+	width: 21px;
+	height: 22px;
+	position: absolute;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 5;
+}
+
+.hidden
+{
+    overflow: hidden;
+}
+
+/*Autre message*/
+.message1
+{
+    color: #FFFFCC;
+    font-weight: bold;
+}
+.message2
+{
+	color: #FF0000;
+	font-weight: bold;
+}
+.message3
+{
+	color: #66CC33;
+	font-weight: bold;
+}
+.etape
+{
+	font-size: 24px;
+}
+.captcha{
+	background: url(Images/captcha/fond.jpg) no-repeat;
+	background-repeat: no-repeat;
+	width: 125px;
+	height: 30px;
+	border: 2px solid;
+}
+.font1
+{
+	font-family: 'Conv_MTCORSVA', Serif;
+    font-weight: 300;
+    font-size: 19px;
+    word-spacing: 1px;
+}
+.font2
+{
+	font-family: 'Conv_MTCORSVA', Serif;
+    font-weight: 300;
+    font-size: 19px;
+    word-spacing: 1px;
+}
+.pTitre
+{
+    font-weight: bold;
+    text-decoration: underline;
+}
+.pPara
+{
+    padding-left: 45px;
+    padding-right: 45px;
+}
+.pAsterix
+{
+    font-size: small;
+}
+
+/*Autre*/
+a
+{
+	color: #663333;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: none;
+}
+img
+{
+	border: none;
+}
+a:hover
+{
+    color: #666666;
+    text-decoration: underline;
+}
+.a
+{
+	color: #844242;
+    font-style: italic;
+    font-weight: bold;
+	font-size: 18px;
+    text-decoration: none;
+}
+.a:hover
+{
+    color: #999999;
+    text-decoration: underline;
+}
+
+.pHaut, .pMilieu, .pBas
+{
+    border: 0px solid;    
+}
+.y:hover
+{	
+	display: none;
+}
+.y
+{	
+	display: inline;
+}
+input, textarea, select
+{
+	/*color: #999966;*/
+	font: normal 15px Times New Roman,Tahoma,Verdana,Arial,sans-serif;
+	/*background-color: #2f2f2f;
+	border-color : #999966;*/
+}

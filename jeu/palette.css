@@ -1,0 +1,2186 @@
+/*
+ * **This file is wrapped in `@layer classic` and not one rule inside it is edited.**
+ *
+ * It styles bare `body`, `a`, `select` and `option`, it has no root class to be scoped by — `/classic` renders a bare `Outlet`, because the
+ * thing it transcribes is a frameset — and both skins share one bundle. Unlayered CSS beats layered CSS whatever the specificity, so those
+ * five selectors beat every Tailwind utility the modern skin is built from, on every element they name. A link in `/` took the classic's
+ * `--hh-lien` and lost its underline, and no utility could say otherwise.
+ *
+ * A layer is the fix that changes nothing here: the rules keep their order among themselves, so this skin cascades exactly as it did, and
+ * `muraille.css` declares `classic` first so anything the modern skin says outranks it. The transcription is untouched; only its precedence
+ * against a stylesheet it never knew about is stated.
+ */
+@layer classic {
+  /*
+ * The 2010 interface, transcribed.
+ *
+ * Every colour here is read out of the recovered markup and cited to the line that carried it. They are recovered values, not choices, so
+ * they are cited like recovered values — the same discipline `packages/rules` applies to a number.
+ *
+ * The original set these as HTML attributes on <body> and on individual <table> tags, because it predates anyone using CSS for colour. What
+ * follows is the same values, gathered.
+ */
+
+  :root {
+    --hh-fond: #000000; /* body bgcolor                MenuJeux.asp:35  */
+    --hh-texte: #999966; /* body text                   InfoGen.asp:26   */
+    --hh-lien: #999966; /* link / vlink / alink        InfoGen.asp:26   */
+    --hh-menu: #cccc00; /* menu frame text and links   MenuJeux.asp:35  */
+    --hh-filet: #999977; /* table bordercolor           InfoGen.asp:327  */
+    --hh-titre: #cccc99; /* section header link         InfoGen.asp:506  */
+    --hh-parchemin: #ffffcc; /* message panel background    InfoGen.asp:280  */
+    --hh-bandeau: #000066; /* section header row          InfoGen.asp:704  */
+    --hh-alerte: #ff0000; /* .message2                   Default.css      */
+    --hh-bien: #66cc33; /* .message3                   Default.css      */
+    /*
+   * Les deux couleurs des rôles, et ce ne sont pas celles des messages.
+   *
+   * `monarchie.asp`:442 peint le roi en `#FF3000` et sa légende s'écrit elle-même dans cette teinte; `royaumeClan.asp`:289 peint la seigneurie
+   * du lecteur en `#099999` et fait pareil. **Ce dépôt avait pris `--hh-alerte` et le mot-clé `aqua`** — `#ff0000` et `#00ffff`, deux teintes
+   * voisines mais autres, la seconde franchement: la légende *dit* « aqua » et *peint* un sarcelle sombre, et c'est le `<font color>` qui sait.
+   */
+    --hh-role-rouge: #ff3000; /* le roi, le chef de clan     monarchie.asp:442  */
+    --hh-role-aqua: #099999; /* le duc, votre seigneurie    royaumeClan.asp:289 */
+
+    /* The frameset was cols="160,*" while the menu table inside it was WIDTH=120. That 40px of slack is in the source. */
+    --hh-colonne: 160px;
+    --hh-menu-largeur: 120px;
+    /* What the main frame is capped at. The screens are `width="80%"` tables and the widest banner is 780. */
+    --hh-principal: 860px;
+    /* The guide's pages were `width="75%"` inside three nested blockquotes, in a window of the day. This is that measure, held. */
+    --hh-manuel-page: 1000px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--hh-fond);
+    color: var(--hh-texte);
+    font:
+      15px 'Times New Roman',
+      Tahoma,
+      Verdana,
+      Arial,
+      sans-serif;
+  }
+
+  a {
+    color: var(--hh-lien);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /*
+ * **Une porte que l'archive dessinait en `<a>` et que la reprise doit ouvrir avec un `<button>`.**
+ *
+ * Trois d'entre elles: le sujet d'un message non lu, qui marque la lettre lue avant d'ouvrir; « Écrire un message », qui remet le formulaire à
+ * zéro; et le numéro de la région ennemie du sélecteur de cible, qui remplit les deux boîtes. Aucune ne navigue, donc aucune n'a d'`href` — et
+ * la classe existait depuis la passe de la messagerie sans qu'aucune règle ne l'habille, si bien que les trois se dessinaient en bouton natif
+ * là où 2010 écrivait un lien.
+ */
+  .lien {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--hh-lien);
+    cursor: pointer;
+  }
+
+  .lien:hover {
+    text-decoration: underline;
+  }
+
+  /*
+ * Les champs, et ce commentaire disait « mstyle.css contributed exactly this », ce qui est faux de deux tiers.
+ *
+ * Trois sources, pas une:
+ *
+ * - `mstyle.css` (2010) écrit `beige` et `blue`, et **seulement pour `textarea` et `select`** — jamais pour `input`;
+ * - `Default.css`:449 (le thème de 2016) écrit la fonte, et ses propres lignes de couleur, de fond et de bordure sont **en commentaire**;
+ * - la bordure `#999977` n'est dans aucune des deux. Elle est à nous, et elle reste: un rectangle beige sur du noir a besoin d'une arête, et
+ *   c'est la couleur que l'archive donne à toutes ses autres.
+ *
+ * `input` hérite du beige des deux autres, ce qui est un choix de ce dépôt et non une citation. Le retirer rendrait un champ blanc à texte noir
+ * au milieu d'un écran qui n'a rien de blanc; l'écart est noté ici plutôt que corrigé.
+ */
+  input,
+  textarea,
+  select {
+    background-color: beige;
+    color: blue;
+    font:
+      normal 15px 'Times New Roman',
+      Tahoma,
+      Verdana,
+      Arial,
+      sans-serif;
+    border: 1px solid var(--hh-filet);
+  }
+
+  /*
+ * Ce que la liste déroulante fait quand elle s'ouvre, et personne ne le lui avait dit.
+ *
+ * Une `<option>` sans règle laisse le navigateur décider de la fenêtre surgissante: il en hérite une partie du `select` et peint le reste avec
+ * la chrome du système, qui sur une page noire choisit du sombre. D'où une liste à moitié beige et à moitié autre chose, serrée contre ses bords.
+ *
+ * Les couleurs restent celles de `mstyle.css` — c'est l'archive qui a voulu du bleu sur du beige, pas nous. Ce qui change est qu'elles sont
+ * dites au lieu d'être devinées: `color-scheme: light` fixe la chrome et l'ascenseur du côté clair, où la liste est déjà, et l'espacement rend
+ * une ligne lisible au lieu de la coller à la suivante.
+ */
+  input,
+  textarea,
+  select,
+  option {
+    color-scheme: light;
+  }
+
+  select {
+    padding: 2px 4px;
+  }
+
+  option {
+    background-color: beige;
+    color: blue;
+    padding: 2px 4px;
+  }
+
+  /*
+ * La ligne surlignée, et c'est la seule chose ici que l'archive n'a jamais dite.
+ *
+ * `mstyle.css` donne `beige` et `blue`; il ne dit rien de la ligne sous le curseur, que le système peint alors avec sa propre couleur de
+ * sélection — sur un Windows d'aujourd'hui, un bleu vif qui n'appartient à aucune des deux peaux. Les deux valeurs ci-dessous sont celles de
+ * la règle précédente, inversées: aucune troisième couleur n'entre dans le fichier.
+ */
+  option:checked,
+  option:hover {
+    background-color: blue;
+    color: beige;
+  }
+
+  /* ── the frame ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  /*
+ * The frameset gave the menu 160px and the main frame every pixel left over, then centred the content inside it. On a 1996 monitor those
+ * were the same place. On a widescreen they are not: the menu stays pinned left while the content floats off to the middle, with a metre of
+ * black between them.
+ *
+ * So the two columns are centred *as a pair* rather than the content being centred inside its own. The main column is capped at the width
+ * the pages themselves assume — they are built of `width="80%"` tables inside a frame that was never going to be much wider than this — and
+ * the proportions are the source's.
+ */
+  .cadre {
+    display: grid;
+    grid-template-columns: var(--hh-colonne) minmax(0, var(--hh-principal));
+    justify-content: center;
+    align-items: start;
+    min-height: 100vh;
+  }
+
+  .colonne {
+    position: sticky; /* the one thing frames bought that a grid does not */
+    top: 0;
+    align-self: start;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding-left: 4px;
+  }
+
+  .principal {
+    padding: 8px 0 40px;
+    min-width: 0;
+  }
+
+  /* ── the menu ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .menu {
+    width: var(--hh-menu-largeur);
+    color: var(--hh-menu);
+  }
+
+  .menu a,
+  .menu .eteint {
+    display: block;
+    width: var(--hh-menu-largeur);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    text-indent: -9999px; /* the label is in the image; keep it for a reader that cannot see it */
+    overflow: hidden;
+  }
+
+  .menu .separateur {
+    width: var(--hh-menu-largeur);
+    background-repeat: no-repeat;
+  }
+
+  /* One rule, twenty-four swaps. --survol is set per entry in Menu.tsx from the manifest's paired image. */
+  .menu a:hover {
+    background-image: var(--survol) !important;
+  }
+
+  /*
+ * A screen nothing answers yet. The original had this state for exactly three entries — MainMenu2_19/21/24, the dimmed Diplomatie, Royauté
+ * and Salle de guerre — and those three use their real dimmed art. The rest are matched to it here rather than invented differently.
+ */
+  .menu a.faible {
+    filter: grayscale(70%) brightness(0.55);
+  }
+
+  .menu a.faible:hover {
+    filter: grayscale(45%) brightness(0.75);
+  }
+
+  .menu a.actif {
+    background-image: var(--survol) !important;
+  }
+
+  .menu .logo {
+    display: block;
+    margin: 0 auto;
+  }
+
+  /*
+ * ── sous « Sortie » ──
+ *
+ * **Rien ici n'est cité, parce qu'il n'y a rien à citer.** La bande de 2010 s'arrête à « Sortie » et ces portes-là — une autre ère, la peau
+ * moderne, le bouton qui fait passer un jour dans un monde sans horloge — n'existaient pas. Elles se dessinent donc dans la couleur du menu et
+ * dans la fonte de la barre, sans art et sans relief: ce qui n'a pas été taillé en 2010 n'imite pas ce qui l'a été.
+ */
+  .ailleurs {
+    width: var(--hh-menu-largeur);
+    margin: 6px 0 24px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 11px;
+  }
+
+  .ailleurs-ere {
+    margin: 0;
+    padding: 0 2px;
+    color: var(--hh-texte);
+    text-align: center;
+  }
+
+  .ailleurs-porte {
+    display: block;
+    width: 100%;
+    padding: 2px 0;
+    background: none;
+    border: none;
+    color: var(--hh-menu);
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .ailleurs-porte:hover {
+    text-decoration: underline;
+  }
+
+  /*
+ * Le panneau descend, il ne flotte pas: `.colonne` roule son propre débordement, et un panneau en `position: absolute` serait rogné par la
+ * colonne même qui le porte.
+ */
+  .ailleurs-panneau {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 4px;
+    padding: 6px 7px;
+    border: 1px solid var(--hh-filet);
+    text-align: left;
+  }
+
+  .ailleurs-panneau a,
+  .ailleurs-panneau .lien {
+    font: inherit;
+    text-align: left;
+    color: var(--hh-lien);
+  }
+
+  .ailleurs-panneau .lien:disabled {
+    cursor: default;
+    opacity: 0.6;
+    text-decoration: none;
+  }
+
+  /* ── a screen ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .entete {
+    display: block;
+    margin: 0 auto 6px;
+  }
+
+  .ecran {
+    margin: 0 auto;
+    max-width: 780px;
+    text-align: center;
+  }
+
+  .ecran table {
+    margin: 0 auto 4px;
+    border-collapse: collapse;
+    color: var(--hh-texte);
+  }
+
+  .ecran th {
+    font-weight: bold;
+    color: var(--hh-titre);
+    padding: 2px 10px;
+    text-align: left;
+  }
+
+  .ecran td {
+    padding: 2px 10px;
+    vertical-align: top;
+  }
+
+  /*
+ * **La ligne d'en-têtes d'un tableau, et c'est la même pierre partout.**
+ *
+ * Six règles la nommaient par son parent — `.militaire`, `.liberation`, `.engin`, `.nouvelles`, `.depeches`, `.royaume` — et **cinq tableaux
+ * portaient la classe sous un parent que personne n'avait écrit**: `.conseillers`, `.courrier`, `.antre`, `.monde` et `.conseiller-avantages`.
+ * Ces cinq-là dessinaient des cellules nues là où l'archive met une bande et du `#CCCC99` dessus. C'est exactement le défaut que `DONE.md`
+ * enregistre à la première passe de `.bande` — « `.bande` n'était habillé nulle part » — à demi corrigé: la correction avait habillé les trois
+ * tableaux qu'elle avait sous les yeux.
+ *
+ * La bande est donc le défaut maintenant, et un parent ne parle que là où il diffère. Un tableau qui écrit `.bande` demain est habillé sans que
+ * personne ait à s'en souvenir. `Entetebaslarge.jpg` est la pierre par défaut parce que c'est celle que six des onze emploient.
+ *
+ * **Sans `text-align`, et c'est délibéré.** `.nouvelles` et `.depeches` centrent leur première et leur dernière cellule et laissent la colonne
+ * du message à gauche; un centrage par défaut la déplacerait. Les parents qui veulent le centre le disent.
+ */
+  .ecran .bande {
+    background: var(--hh-bandeau) url('classic/filets/bas-large.jpg') repeat-x 0 0;
+    color: var(--hh-titre);
+    font-weight: bold;
+    padding: 3px 8px;
+  }
+
+  /* `conseiller.asp`:96-99 — la pierre courte, et ses quatre cellules sont `align=center`. */
+  .conseillers .bande {
+    background-image: url('classic/filets/bas-court.jpg');
+    text-align: center;
+  }
+
+  /* `Courrierboite.asp`:60-61 — la pierre longue, et ses cinq cellules sont `align=left`, donc rien à dire de plus. */
+  .courrier .bande {
+    background-image: url('classic/filets/bas-long.jpg');
+  }
+
+  /* Le compte de la guilde n'a pas de source: `changerroyaume.asp` ne porte aucun tableau et le choix d'attaque non plus. */
+  .antre .bande,
+  .conseiller-avantages .bande {
+    text-align: center;
+  }
+
+  .ecran td.num,
+  .ecran th.num {
+    text-align: right;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 13px;
+  }
+
+  /*
+ * The same strip, empty, closing a table — `<td height="15" colspan=5 background="Images/Entetebaslong.jpg"></td>`. Fifteen pixels
+ * everywhere it appears, and it appears constantly.
+ */
+  .filet {
+    height: 15px;
+    background: var(--hh-bandeau) url('classic/filets/bas-long.jpg') repeat-x 0 0;
+    max-width: 780px;
+    margin: 0 auto 12px;
+  }
+
+  /*
+ * The same rule cut from the wide stone.
+ *
+ * `statistiques.asp`:164 closes the personal counters with `<img Entetebaslarge.jpg width="542" height="15">` and `monarchie.asp`:400/556 open
+ * and close the appui roll with `height="10"` cells on the same file. `Entetebaslong.jpg` is a different cut of the same rock and the archive
+ * chose between them per table, so this does too.
+ */
+  .filet.large {
+    background-image: url('classic/filets/bas-large.jpg');
+  }
+
+  /* `monarchie.asp` rules its appui roll at ten pixels, not fifteen — the thinnest strip the archive draws. */
+  .filet.mince {
+    height: 10px;
+  }
+
+  /* The same rule written as a table's own first and last row, which is how `monarchie.asp`:400/556 write it. */
+  .filet-rang td {
+    height: 10px;
+    padding: 0;
+    background: var(--hh-bandeau) url('classic/filets/bas-large.jpg') repeat-x 0 0;
+  }
+
+  /*
+ * A section header.
+ *
+ * The original wrote it as `<tr bgcolor="#000066"><td background="Images/Entetebaslong.jpg">` — the strip image over a navy fallback, with
+ * the title in #CCCC99 on top. A first pass here made the navy a flat bar and the strip a separate rule below it, which drew the same two
+ * things twice and looked like neither.
+ *
+ * **The bar is the strip's own height and not a pixel more.** `Entetebaslong.jpg` is 900x25; a box of 26px let one row of `#000066` out along
+ * the top edge, which read as a thin blue rule above the stone and is visible in any screenshot taken before this line was written.
+ *
+ * **The top margin is the `<br>` the original put between two sections**, and it is here because it used to come from somewhere else. A
+ * `.filet` sat above every one of these — the empty strip that closes a table, stacked on the strip that opens the next section — and the
+ * archive never once drew those two together. Removing it took the section's breathing room with it; this puts it back as spacing rather
+ * than as a second bar.
+ */
+  .bandeau {
+    background: var(--hh-bandeau) url('classic/filets/bas-long.jpg') repeat-x 0 0;
+    color: var(--hh-titre);
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 25px;
+    padding: 0 10px;
+    max-width: 780px;
+    margin: 18px auto 0;
+  }
+
+  .vide {
+    color: #5a5a44; /* the em dash for a value nothing answers: present, and plainly not a number */
+  }
+
+  .message {
+    background: var(--hh-parchemin);
+    color: #000000;
+    font-weight: bold;
+    padding: 4px 10px;
+    margin: 0 auto 8px;
+    max-width: 605px;
+  }
+
+  .erreur {
+    color: var(--hh-alerte);
+    font-weight: bold;
+  }
+
+  /*
+ * A refused order, said where the original said it.
+ *
+ * **Red, and the original is not unanimous about that.** `science.asp` printed its refusals in `#CCCC99` — the same beige as the body text
+ * around them, which makes a message you have to already be looking for. `exploration.asp` used `#FF0000` for the same job. So the archive
+ * carries both, and this takes the one that can be read: `--hh-alerte` is that page's own colour, out of the original's `Default.css`.
+ *
+ * Centred because every one of them was inside a `<p align="center">`.
+ */
+  .refus {
+    color: var(--hh-alerte);
+    font-weight: bold;
+    text-align: center;
+    margin: 8px auto;
+  }
+
+  .reussi {
+    color: var(--hh-bien);
+    font-weight: bold;
+  }
+
+  /*
+ * Un avertissement: ce que le conseiller dit avant qu'on paie, et qui n'est pas un refus.
+ *
+ * Ni `.erreur` ni `.refus` — les deux disent « non ». Celui-ci dit « ceci ne marchera pas », sur un ordre que le serveur acceptera quand même,
+ * parce que la condition peut changer entre le départ et le tirage. Le jaune du menu plutôt que le rouge des refus: `--hh-menu` est la couleur
+ * que l'original donnait à ce qui attire l'oeil sans annoncer un échec.
+ */
+  .avertissement {
+    color: var(--hh-menu);
+    margin: 6px auto;
+    max-width: 605px;
+    text-align: left;
+  }
+
+  /* What a screen says about what it does not have. Deliberately quiet — it is a note to us, not to a player. */
+  .manques {
+    margin: 24px auto 0;
+    max-width: 605px;
+    padding: 6px 10px;
+    border: 1px dotted var(--hh-filet);
+    color: #6b6b50;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 11px;
+    text-align: left;
+  }
+
+  .manques code {
+    color: var(--hh-titre);
+  }
+
+  /*
+ * ── ressource.inc ──
+ *
+ * La bande de chiffres, incluse en tête de soixante écrans: `<div align="center">` autour d'une `<table width="100%" border="0">` d'une seule
+ * rangée, douze cellules `width=8%` en six paires — l'icône serrée à droite, le nombre serré à gauche, tous deux `valign="middle"`. Les images
+ * font 30 sur 30 et les nombres sortent en `<font color="#999966">`, qui est `--hh-texte`.
+ */
+  .ressources table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* `cellpadding` non déclaré: la table hérite du pixel que le navigateur met par défaut, et l'icône touche donc presque son nombre. */
+  .ressources td {
+    width: 8%;
+    vertical-align: middle;
+    padding: 1px;
+  }
+
+  .ressources-icone {
+    text-align: right;
+  }
+
+  .ressources-chiffre {
+    text-align: left;
+    color: var(--hh-texte);
+  }
+
+  /* ── Portail.asp ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .portail {
+    width: 700px;
+    margin: 0 auto;
+    padding-top: 16px;
+    text-align: center;
+  }
+
+  /*
+ * The mosaic itself: `WIDTH=700 BORDER=0 CELLPADDING=0 CELLSPACING=0`, and the three zeroes are the load-bearing part. A pixel of padding
+ * anywhere pushes a slice off its neighbour and the wall shows a seam. `table-layout: fixed` is ours and is why the 38px cell can hold a
+ * four-digit number without dragging the row out of true.
+ */
+  .portail table {
+    width: 700px;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+
+  .portail td {
+    padding: 0;
+  }
+
+  /* Slices are block, or each cell keeps a baseline's worth of black under its image and every row of masonry drifts. */
+  .portail img {
+    display: block;
+  }
+
+  /*
+ * Slice 04, the mirror in the wall, with the form standing inside its ring. The cell is the image's own size, so nothing tiles.
+ *
+ * **`.portail td` above is one specificity point stronger than a bare class**, so this cell and the two below have to name the element to get
+ * their padding back. That is not decoration: without it all three sit flush against the top of their slice, and the fix is easy to lose again.
+ *
+ * The `padding-bottom` is the `<br>` the original closed its form with. A cell of `valign` middle centres what it holds, so that trailing line
+ * lifted the fields half its own height; the padding does the same arithmetic without asking a line break to do layout.
+ */
+  .portail td.portail-miroir {
+    width: 366px;
+    height: 242px;
+    padding-bottom: 18px;
+    background: url('classic/portail/fond-04.gif') no-repeat;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .portail-miroir label {
+    display: block;
+    font-size: 13px; /* <font size='2'> */
+  }
+
+  .portail-miroir input {
+    display: block;
+    margin: 2px auto 0;
+  }
+
+  /* The blank row the original's inner table carried between the two fields. */
+  .portail-miroir input + label {
+    margin-top: 14px;
+  }
+
+  .portail-entrez {
+    display: block;
+    width: 181px;
+    height: 65px;
+    background: url('classic/portail/entrez.jpg') no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .portail-entrez:hover {
+    background-image: url('classic/portail/entrez-survol.jpg');
+  }
+
+  /*
+ * The two holes in the sentence, and the padding is measured rather than guessed.
+ *
+ * Both cells were `valign="top" nowrap` on a background slice, which puts a line of text at the very top of a 41px and a 53px cell — above
+ * the parchment's writing band in the one, above the baked-in words « Il y a présentement » in the other. The parchment's light band runs
+ * y=4..20 of slice 10, and the text of slices 12 and 14 sits on a baseline at y≈18; the two paddings put ours on the same lines.
+ */
+  .portail td.portail-parchemin,
+  .portail td.portail-seigneurs {
+    vertical-align: top;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
+  .portail td.portail-parchemin {
+    padding-top: 4px;
+    background: url('classic/portail/fond-10.jpg') no-repeat;
+    color: #000000; /* <font color="#000000" face="Times New Roman, Times, serif">   Portail.asp:96 */
+  }
+
+  .portail td.portail-seigneurs {
+    padding-top: 5px;
+    background: url('classic/portail/fond-13.jpg') no-repeat;
+    color: #ffffcc; /* <font color="#FFFFCC">                                       Portail.asp:100 */
+  }
+
+  /* ── inscription.asp / inscriptionopt.asp — les deux phases ───────────────────────────────────────────────────────────────────── */
+
+  /*
+ * The registration pages, which are one page twice.
+ *
+ * Everything the original set as an attribute is gathered here for the reason the file's head gives: `border="4" bordercolor="#CCCCCC"
+ * bgcolor="#FAF0D1"` on the section bands, `bgcolor="#FFFFCC"` on the parchment, `border="1" cellpadding="2" cellspacing="2"` on the three
+ * grids of checkboxes. The percentage widths are the page's own — 50% for phase I's fields, 56% for phase II's bands and grids, 45% for the
+ * two guild cells — held against a max-width rather than against a 2003 window.
+ */
+
+  .inscription {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 8px 40px;
+    text-align: center;
+  }
+
+  .inscription-entete h2 {
+    margin: 4px 0 0;
+    font-weight: bold;
+  }
+
+  /* `<font size="2">` under the phase — « Création du joueur », « Sélection des options ». */
+  .inscription-entete h2 span {
+    font-size: 13px;
+  }
+
+  /* Le parchemin des consignes: 500px, six tranches autour de deux rangées de `#FFFFCC`. */
+  .parchemin {
+    width: 500px;
+    table-layout: fixed;
+    margin: 16px auto;
+    border-collapse: collapse;
+  }
+
+  /* The three slices are exactly as wide as the cell, so a rounded pixel anywhere drops the last roll onto a second line. */
+  .parchemin-bord {
+    font-size: 0;
+    line-height: 0;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  .parchemin-bord img {
+    vertical-align: top;
+  }
+
+  .parchemin-page {
+    padding: 0 6px;
+    background-color: var(--hh-parchemin);
+    color: #000000;
+    text-align: left;
+  }
+
+  .parchemin-titre {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* La bande beige qui ouvre une section — et l'étape complétée à son bout. */
+  .bande-inscription {
+    width: 56%;
+    margin: 16px auto 0;
+    border: 4px outset #cccccc;
+    border-collapse: separate;
+    background-color: #faf0d1;
+    color: #000000;
+    font-size: 16px; /* <font size="3"> — phase I's own bands are size="4", one step up and not worth a second rule */
+    text-align: left;
+  }
+
+  .bande-inscription td {
+    padding: 2px 6px;
+  }
+
+  .inscription-champs {
+    width: 56%;
+    margin: 8px auto 0;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  .inscription-champs td {
+    padding: 3px 6px;
+  }
+
+  /* `width="30%"` in the source, and `nowrap` because « Confirmez le mot de passe: » is longer than 30% of anything narrow. */
+  .inscription-champs td:first-child {
+    width: 30%;
+    white-space: nowrap;
+  }
+
+  /*
+ * The three grids of checkboxes — races, cercles, guildes.
+ *
+ * `border="1" cellpadding="2" cellspacing="2"` in the source, which a 2003 browser drew as a beveled hairline around every cell. A flat rule
+ * in the palette's own `--hh-filet` is what every other table in this skin uses, and mixing the two would be the only bevel on the site.
+ */
+  .grille-inscription {
+    width: 56%;
+    margin: 8px auto 0;
+    border-collapse: separate;
+    border-spacing: 2px;
+  }
+
+  .grille-inscription td {
+    padding: 2px;
+    border: 1px solid var(--hh-filet);
+    text-align: center;
+    vertical-align: top;
+  }
+
+  .grille-inscription p {
+    margin: 4px 0;
+  }
+
+  .grille-guildes {
+    width: 45%;
+  }
+
+  /* « Races privilèges », « Cercle de magie du compte privilège » — a beige band used as a cell inside a grid. */
+  .grille-inscription td.grille-bande {
+    background-color: #faf0d1;
+    color: #000000;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+
+  .inscription-engagements {
+    width: 48%;
+    margin: 16px auto 0;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  .inscription-engagements td {
+    padding: 2px 0;
+  }
+
+  /* Un refus, tel que la page les écrivait tous: `<h3><b><font color=#FF0000>***…***`. */
+  .refus-inscription {
+    color: var(--hh-alerte);
+    font-weight: bold;
+  }
+
+  .inscription-epee {
+    margin-top: 24px;
+  }
+
+  /* ── InfoGen.asp ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .infogen-entetes,
+  .infogen {
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+
+  .infogen td {
+    padding: 1px 6px;
+    vertical-align: top;
+  }
+
+  /* The strip the two detail links sit on — background="Images/Entetebaslong.jpg", text in #CCCC99. */
+  .infogen .lien-detail {
+    background: var(--hh-bandeau) url('classic/filets/bas-long.jpg') repeat-x 0 0;
+    padding: 3px 10px;
+  }
+
+  .infogen .lien-detail a {
+    color: var(--hh-titre);
+  }
+
+  /* ── VilleJeux.asp ─────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .ville-entetes {
+    width: 81%;
+    margin: 0 auto;
+    background: url('classic/filets/bas-long.jpg') repeat-x 0 0;
+    border-collapse: collapse;
+  }
+
+  .ville-entetes td {
+    padding: 2px 6px;
+    font-size: 13px;
+    color: var(--hh-titre);
+  }
+
+  .ville {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+
+  .ville td {
+    padding: 2px 4px;
+    vertical-align: middle;
+  }
+
+  .ville .ville-nom {
+    text-align: center;
+    width: 20%;
+  }
+
+  .ville .ville-nom img {
+    float: left;
+  }
+
+  .valeur {
+    color: var(--hh-titre);
+  }
+
+  /* ── Militaire.asp ─────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .militaire {
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+  }
+
+  .militaire td {
+    padding: 2px 6px;
+    vertical-align: middle;
+  }
+
+  /* The header cells sit on Entetebaslarge.jpg, which is the wider cousin of the strip everything else closes with. */
+  .militaire .bande {
+    background: url('classic/filets/bas-large.jpg') repeat-x 0 0;
+    color: var(--hh-titre);
+    font-weight: bold;
+    text-align: center;
+    padding: 3px 8px;
+  }
+
+  /*
+ * The foot of `Militaire.asp`: a 50%-wide table of two 167x45 image links, or a 70%-wide one of three for the Gobelin. A flex row rather than
+ * a table, because the only thing the table did was push the second link to the right edge.
+ */
+  .militaire-liens {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  /* ── liberermilitaire.asp ────────────────────────────────────────────────────────────────────────────────── */
+
+  /*
+ * The liberation table is not the barracks table, and the widths are why it gets its own block: `width="76%"`, six columns declared at
+ * 20/10/10/10/15/9, and a header row on `Entetebascourt.jpg` rather than the `Entetebaslarge.jpg` the barracks uses. The percentages are the
+ * page's own attributes, moved into `col` widths so a browser that has never heard of `<td width>` still lays the table out the same way.
+ */
+  .liberation {
+    width: 76%;
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+  }
+
+  .liberation td {
+    padding: 3px 6px;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .liberation .bande {
+    background: url('classic/filets/bas-court.jpg') repeat-x 0 0;
+    color: var(--hh-titre);
+    font-weight: bold;
+    text-align: center;
+    padding: 3px 8px;
+  }
+
+  /* The strip the table closes with, `height=20 colspan=6` on Entetebaslong.jpg, and the five-pixel spacer row under it. */
+  .liberation .pied {
+    height: 20px;
+    background: var(--hh-bandeau) url('classic/filets/bas-long.jpg') repeat-x 0 0;
+    padding: 0;
+  }
+
+  .liberation .espace {
+    height: 5px;
+    padding: 0;
+  }
+
+  /* The line under the button, which the original wrote as a sixth cell spanning the table rather than as a paragraph. */
+  .liberation .mendiants {
+    padding: 6px 10px;
+  }
+
+  /* ── MilitaireGobelin.asp ────────────────────────────────────────────────────────────────────────────────── */
+
+  /*
+ * L'engin d'entraînement, at the page's own measurements.
+ *
+ * The intro sits inside **three nested blockquotes**, which is 40px of indent each side apiece in every browser that ever rendered this page — so
+ * the 240px it computes to is folded into the width below rather than nested three deep: the page's `width="70%"` is 70% of what the blockquotes
+ * left, so `calc(70% - 168px)` is that table at the width it actually had. Its first column is 145px and holds a 124x80 image aligned left.
+ */
+  .engin-intro {
+    width: calc(70% - 168px);
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+  }
+
+  .engin-intro td {
+    vertical-align: middle;
+    padding: 0;
+  }
+
+  .engin-machine {
+    text-align: left;
+  }
+
+  /*
+ * The main table: `width="60%"`, four columns at 72/148/148/148, a header row on `Entetebaslarge.jpg` — the barracks' strip and not the
+ * liberation's shorter one — and every cell centred, which the page wrote as a `<div align="center">` inside each.
+ */
+  .engin {
+    width: 60%;
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+  }
+
+  .engin td {
+    padding: 3px 6px;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .engin .bande {
+    background: url('classic/filets/bas-large.jpg') repeat-x 0 0;
+    color: var(--hh-titre);
+    font-weight: bold;
+    text-align: center;
+    padding: 3px 8px;
+  }
+
+  /* The middle row alone carried `bgcolor="#333333"`. */
+  .engin .sombre td {
+    background: #333333;
+  }
+
+  /* `height=20 colspan=4` on Entetebaslong.jpg, exactly as the liberation table closes. */
+  .engin .pied {
+    height: 20px;
+    background: var(--hh-bandeau) url('classic/filets/bas-long.jpg') repeat-x 0 0;
+    padding: 0;
+  }
+
+  /*
+ * What the machine did, in the page's own beige rather than in the red the refusals wear. It is not a refusal: the loss it reports is the price of
+ * an order that worked, and `#CCCC99` centred is how all four of this page's `<font>` blocks were written.
+ */
+  .engin-mot {
+    color: var(--hh-titre);
+    text-align: center;
+    margin: 8px auto;
+  }
+
+  /* The page's last line, which it wrote as a centred paragraph opening with a `<br>`. */
+  .engin-retour {
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  /* ── choixattaque.asp ──────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .choix-attaque {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+    max-width: 780px;
+  }
+
+  .choix-bloc {
+    background: url('classic/combat/lhs_bkg.jpg') repeat;
+    border: 1px solid var(--hh-filet);
+    padding: 6px;
+    text-align: center;
+    width: 240px;
+  }
+
+  .choix-entete {
+    display: block;
+    margin: 0 auto 4px;
+    max-width: 100%;
+  }
+
+  .choix-icone {
+    display: block;
+    margin: 0 auto 4px;
+  }
+
+  .choix-bar {
+    display: block;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+    overflow: hidden;
+  }
+
+  .choix-bar:hover {
+    background-image: var(--survol) !important;
+  }
+
+  /* ── exploration.asp / news.asp ────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .exploration {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto 10px;
+  }
+
+  .expl-bloc {
+    background: url('classic/icones/marbre.jpg') repeat;
+    border: 1px solid var(--hh-filet);
+    padding: 8px;
+    text-align: center;
+  }
+
+  .expl-bloc table {
+    margin: 6px auto;
+  }
+
+  .expl-note {
+    font-size: 12px;
+  }
+
+  .conseillers-tally {
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+    min-width: 60%;
+  }
+
+  .conseillers-tally td {
+    padding: 2px 8px;
+  }
+
+  .legende {
+    display: block;
+    margin: 0 auto 6px;
+  }
+
+  /*
+ * `news.asp`, measured off its own tags: **two tables of 85%**, not one. The header is its own table on `Entetebaslong.jpg`, with three cells at
+ * 10%, 80% and 10%; the body is a second table on `fondMarbre.jpg` with `cellpadding=2`. One table with a `thead` is the same picture and one
+ * fewer element, so the two are collapsed here and the header cells carry the strip.
+ */
+  .nouvelles {
+    width: 85%;
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+    background: url('classic/icones/marbre.jpg') repeat;
+  }
+
+  .nouvelles td {
+    padding: 2px 8px;
+  }
+
+  /* `<strong><font color="#CCCC99">` on `Entetebaslong.jpg`, which is what every header row in this archive is. */
+  .nouvelles .bande {
+    background: var(--hh-bandeau) url('classic/filets/bas-long.jpg') repeat-x 0 0;
+    color: var(--hh-titre);
+    font-weight: bold;
+    line-height: 25px;
+    padding: 0 8px;
+  }
+
+  .nouvelles .bande:first-child,
+  .nouvelles .bande:last-child {
+    width: 10%;
+    text-align: center;
+  }
+
+  /*
+ * **La règle horizontale entre deux lignes**, et elle est dans la source: `<tr><td colspan=3><hr color='#999977'></hr></td></tr>` après chaque
+ * dépêche. Une bordure basse plutôt qu'une ligne de table, parce que le `<hr>` ne portait rien d'autre.
+ */
+  .nouvelles tbody tr {
+    border-bottom: 1px solid var(--hh-filet);
+  }
+
+  /*
+ * ── newsroyaume.asp et newsmonde.asp ───────────────────────────────────────────────────────────────────────────────────────────
+ *
+ * Les deux mêmes pages à un mot près: trois tables de 85%, la prose en gras et centrée, puis quatre en-têtes sur `Entetebaslarge.jpg` — Jour à
+ * 10%, la colonne d'icône sans largeur, le message à 70%, le royaume impliqué à 10%. Aucune règle horizontale entre les lignes, contrairement au
+ * fil de la seigneurie.
+ */
+  .depeches {
+    width: 85%;
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+  }
+
+  .depeches td {
+    padding: 2px 8px;
+    vertical-align: middle;
+  }
+
+  .depeches .bande {
+    background: url('classic/filets/bas-large.jpg') repeat-x 0 0;
+    color: var(--hh-titre);
+    font-weight: bold;
+    padding: 4px 8px;
+  }
+
+  .depeches .bande:first-child,
+  .depeches .bande:last-child {
+    width: 10%;
+    text-align: center;
+  }
+
+  .depeches .bande:nth-child(3) {
+    width: 70%;
+  }
+
+  /* 25×25 pour dix-huit des vingt et une, 28×25 pour l'aide et 30×25 pour trois autres. La hauteur est la même partout. */
+  .icone-depeche {
+    display: block;
+    height: 25px;
+    margin: 0 auto;
+  }
+
+  /* `<strong>` centré sur 85%, et `<font size="+1">` en plus sur le fil mondial. */
+  .depeches-intro {
+    max-width: 85%;
+    margin: 8px auto;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .depeches-intro.monde {
+    background: none;
+    font-size: 17px;
+  }
+
+  /* Les en-têtes de `royaume.asp` et de `SalleGuerre.asp` sont les mêmes: sept et neuf cellules sur `Entetebaslarge.jpg`, et `.bande` n'était pas
+ * habillé du tout — un manque antérieur à cette passe, corrigé ici parce que c'est le même traitement que celui des deux fils. */
+  .royaume .bande {
+    background: url('classic/filets/bas-large.jpg') repeat-x 0 0;
+    color: var(--hh-titre);
+    font-weight: bold;
+    text-align: center;
+    padding: 4px 8px;
+  }
+
+  /* ── science.asp ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .sciences {
+    width: 80%;
+    margin: 0 auto 6px;
+    border-collapse: collapse;
+  }
+
+  .sciences td {
+    padding: 4px 8px;
+    vertical-align: middle;
+  }
+
+  /* Every second row carried bgcolor="#333333". */
+  .sciences .sombre td {
+    background: #333333;
+  }
+
+  .sciences .sc-icone {
+    width: 10%;
+    text-align: center;
+  }
+
+  .sciences .sc-effet {
+    width: 80%;
+    text-align: left;
+  }
+
+  .sciences .sc-prix {
+    width: 10%;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /*
+ * La plaque qui achète un niveau.
+ *
+ * `science.asp` l'écrit dix fois de la même façon: `<a href="JavaScript:document.demographie.submit()"><img src="Images/niveausc.jpg"></a>` —
+ * un lien, la plaque, et rien autour. Ici l'élément reste un `<button>`, parce qu'il poste un ordre au lieu d'aller quelque part, mais la
+ * chrome du navigateur s'en va: un `<button>` par défaut dessine un biseau blanc autour d'une plaque de pierre, ce qui est exactement le
+ * cadre que personne n'avait demandé.
+ *
+ * **Aucune image de survol n'a jamais été taillée pour celle-ci** — l'archive n'a que `niveausc.jpg`, là où le menu, le portail et les
+ * bandeaux de choix ont tous leur `-survol`. Le survol est donc la lumière de la plaque elle-même et non une seconde image, et le clic
+ * l'assombrit: sans rien, la seule chose qui pouvait dire qu'elle était cliquable était le curseur, et il ne changeait pas non plus.
+ */
+  .sc-bouton {
+    padding: 0;
+    border: 0;
+    background: none;
+    line-height: 0;
+    cursor: pointer;
+  }
+
+  .sc-bouton:hover:not(:disabled) {
+    filter: brightness(1.35);
+  }
+
+  .sc-bouton:active:not(:disabled) {
+    filter: brightness(0.85);
+  }
+
+  /* L'éteint des entrées de menu et du bouton du manuel, parce que c'est le même refus. */
+  .sc-bouton:disabled {
+    filter: grayscale(70%) brightness(0.5);
+    cursor: default;
+  }
+
+  /* ── courrier / messagerie / le portail d'informations ─────────────────────────────────────────────────────────────────────────── */
+
+  .courrier,
+  .rubriques {
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+    min-width: 60%;
+  }
+
+  .courrier td,
+  .rubriques td {
+    padding: 3px 8px;
+  }
+
+  /*
+ * **Les six écrans de la messagerie, habillés le 2026-08-21 avec la passe de transcription.**
+ *
+ * Aucune de ces classes n'avait de règle: elles ont été écrites en même temps que les écrans, en août 2026, et sont restées nues jusqu'à ce que
+ * quelqu'un relise les `.asp`. C'est la même faute que celle qu'enregistre `.bande` plus haut, et elle se répare de la même façon — en mesurant
+ * la page plutôt qu'en choisissant.
+ */
+
+  /*
+ * `MiniEnteteRegRoy.jpg`, 300×30: la plaque porte les deux mots et la page écrit les deux chiffres par-dessus, dans un tableau de quatre
+ * cellules à 90, 60, 95 et 55 pixels. Les décalages ci-dessous sont ceux-là, au pixel — `Messagerie.asp`:57-64.
+ */
+  .entete-reg-roy {
+    position: relative;
+    width: 300px;
+    height: 30px;
+    margin: 0 auto 6px;
+    background-repeat: no-repeat;
+  }
+
+  .entete-reg-roy span {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    color: var(--hh-parchemin);
+    line-height: 30px;
+  }
+
+  .entete-reg-roy .region {
+    left: 90px;
+    width: 60px;
+  }
+
+  .entete-reg-roy .royaume {
+    left: 245px;
+    width: 55px;
+  }
+
+  /* `<font size=5>du seigneur <strong><i>…</i></strong></font>` sous la bannière du courrier — `Courrierboite.asp`:52 et `Courrier.asp`:67. */
+  .titre-courrier {
+    text-align: center;
+    font-size: 18px;
+    margin: 0 0 8px;
+  }
+
+  /* Les `<h2>`, `<h3>` et `<h4>` centrés que ces pages emploient comme intertitres et comme lien de retour. */
+  .ecran .titre-section {
+    text-align: center;
+    margin: 8px 0;
+  }
+
+  /* `Messagerie1.asp`:114-115 — `<font size="2">` dans la ligne du plafond, et rien d'autre sur cette page ne change de taille. */
+  .petit {
+    font-size: 12px;
+  }
+
+  /* La cellule d'auteur d'un message: `width='20%'`, centrée, le blason entre le jour et le nom. `Messagerie1.asp`:182. */
+  .rubriques .auteur {
+    width: 20%;
+    text-align: center;
+    vertical-align: top;
+  }
+
+  /* `bgcolor='#D8D0A0'` sur la rangée dont `fld_lu = 0` — le seul marqueur du non-lu, l'icône étant la même partout. `Courrierboite.asp`:80. */
+  .courrier .non-lu td {
+    background: #d8d0a0;
+    color: #000000;
+  }
+
+  .courrier .non-lu .lien {
+    color: #000000;
+  }
+
+  /* Un message permanent: la page ne le colore pas, elle le préfixe. La bordure remplace le `<strong><i>` qui le disait déjà. */
+  .rubriques .epingle td {
+    border-left: 2px solid var(--hh-titre);
+  }
+
+  /* Les boutons-images des formulaires — `<input type=image>` avec un `del4.gif` ou un `timer.gif` dedans, donc aucun habillage de bouton. */
+  .supprimer {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  /*
+ * La lettre ouverte, dans la forme de `Courrierlire.asp`:79-104: un tableau de 60%, `border="3"` sur `#999966`, dont l'unique cellule est sur
+ * `#E1DAD7` et écrite en noir. C'est le seul panneau clair du jeu avec le parchemin du babillard.
+ */
+  .lettre {
+    width: 60%;
+    margin: 0 auto 8px;
+    border: 3px solid var(--hh-titre);
+    border-collapse: collapse;
+  }
+
+  .lettre td {
+    background: #e1dad7;
+    color: #000000;
+    padding: 8px 12px;
+  }
+
+  /* `&nbsp;` × 13 devant la signature dans la source; un retrait dit la même chose sans treize entités. */
+  .lettre .signature {
+    padding-left: 6em;
+  }
+
+  .mascotte {
+    vertical-align: middle;
+    margin: 0 8px;
+  }
+
+  .liens {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 8px auto;
+  }
+
+  .note-forum {
+    max-width: 620px;
+    margin: 8px auto;
+    font-size: 13px;
+    text-align: left;
+  }
+
+  /* ── conseiller / marché / options / statistiques ──────────────────────────────────────────────────────────────────────────────── */
+
+  .conseillers,
+  .marche,
+  .stats {
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+    min-width: 55%;
+  }
+
+  .conseillers td,
+  .marche td,
+  .rapport td,
+  .stats td {
+    padding: 3px 8px;
+  }
+
+  /*
+ * Le rapport de pré-attaque, et c'est le seul tableau du jeu dont le marbre est le fond plutôt qu'une bande.
+ *
+ * `Rapportattaque#183` et `#641`: `<table width="70%" border="0" align="center" bordercolor="0" background="Images/lhs_bkg.jpg">`. Ses lignes
+ * de titre sont des cellules nues portant une image — 520×40 pour un rapport, 291×28 pour une famille de modificateurs — et non des en-têtes.
+ * Une transcription antérieure leur avait donné `.bande`, ce qui posait le `#000066` d'un en-tête sous chaque plaque: le filet bleu.
+ */
+  .rapport {
+    width: 70%;
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+    background: url('classic/combat/lhs_bkg.jpg');
+  }
+
+  /*
+ * La fiche d'un conseiller — `conseillerdescription.asp`, et ses deux classes n'avaient aucune règle non plus.
+ *
+ * La page est un `<div align="center">`: un tableau de 40% qui porte le nom en `<h2>` entre deux portraits de 30x30, le type et le niveau en
+ * `<h4>`, l'histoire en `<h5>`; puis un second tableau de 40%, `border="1"`, dont la ligne de titre est sur `Entetebaslarge.jpg` — donc `.bande`,
+ * déjà habillé — et dont les lignes s'écrivent en `#CCCC99` sur des bordures `#999977`.
+ *
+ * Les trois niveaux de titre sont les siens et gardent leur hiérarchie; ce qui est repris ici est leur marge, que le navigateur fixe pour une
+ * page de texte et non pour une fiche de quatre lignes.
+ */
+  .conseiller-fiche {
+    text-align: center;
+  }
+
+  .conseiller-fiche h2 {
+    margin: 6px 0 2px;
+    font-size: 21px;
+    color: var(--hh-titre);
+  }
+
+  .conseiller-fiche h2 img {
+    vertical-align: middle;
+    margin: 0 10px;
+  }
+
+  .conseiller-fiche h4 {
+    margin: 2px 0;
+    font-weight: normal;
+  }
+
+  .conseiller-fiche h5 {
+    margin: 2px auto 10px;
+    max-width: 605px;
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  .conseiller-avantages {
+    width: 40%;
+    min-width: 320px;
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+    border: 1px solid var(--hh-filet);
+  }
+
+  .conseiller-avantages td {
+    padding: 3px 8px;
+    border: 1px solid var(--hh-filet);
+    color: var(--hh-titre);
+    text-align: left;
+  }
+
+  /*
+ * ── les classements ────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ *
+ * `Top20acre.asp` drew `<table width='75%' align=center>` with one header row on `bgcolor='#000066'` — the same deep blue the section headers
+ * use, which is why this reuses `--hh-bandeau` rather than naming a second colour. Ten boards, one table: the widths the original set per
+ * column are not reproduced, because they differ per board and a column that has to fit a lordship's name is not a column at a fixed 30%.
+ */
+  .classement {
+    min-width: 75%;
+  }
+
+  .classement th {
+    background: var(--hh-bandeau);
+    color: var(--hh-titre);
+    font-weight: normal;
+    padding: 3px 8px;
+  }
+
+  /*
+ * La ligne de totaux d'un recensement, sur le même bleu que ses entêtes.
+ *
+ * `Monderace.asp` la dessinait en `bgcolor='#000066'` — la couleur de sa rangée d'entêtes, pas une troisième — donc elle relit `--hh-bandeau`
+ * comme les entêtes le font. Deux des cinq recensements en portent une; les trois autres n'ont pas de ligne de totaux du tout.
+ */
+  .classement tfoot td {
+    background: var(--hh-bandeau);
+    color: var(--hh-titre);
+    padding: 3px 8px;
+  }
+
+  /* The line a board printed above its columns — « Le TOP 100 des seigneuries possédant le plus d'acre », the page's own `<h4>`. */
+  .bandeau-titre {
+    color: var(--hh-titre);
+    font-size: 16px;
+    margin: 4px auto 8px;
+  }
+
+  /* The hub's three section plates. Narrower than a screen banner because they are, at 262px against 300. */
+  .intertitre {
+    display: block;
+    margin: 10px auto 2px;
+  }
+
+  /* The pages' own explanatory paragraphs. Kept verbatim, so given room to read. */
+  .prose {
+    max-width: 640px;
+    margin: 6px auto;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  /*
+ * ── le sélecteur de cible ─────────────────────────────────────────────────────────────────────────────────────────────────────
+ *
+ * `<table width="18%" align="center" height="60">` sur les sept pages, avec des cellules de 80% et 20% par boîte. La largeur est rendue par le
+ * contenu plutôt que figée: 18% d'un cadre de 2010 tenait deux champs de trois caractères et rien d'autre.
+ *
+ * Le filet est celui de `MagieLance.asp:1888` et de `VolJeux.asp:981` — `border="1" bordercolor="#333333"` — et les cinq `guerre*` ouvrent à
+ * `border="0"`.
+ */
+  .cible-adresse {
+    margin: 8px auto;
+    border-collapse: collapse;
+  }
+
+  .cible-adresse td {
+    padding: 3px 8px;
+  }
+
+  .cible-adresse-filet {
+    border: 1px solid #333333;
+  }
+
+  /* `<p align="center">Sélectionner la seigneurie à attaquer</p>` — `guerre.asp:233`, la ligne au-dessus du sélecteur sur six des sept pages. */
+  .cible-titre,
+  .combat-boutons {
+    text-align: center;
+  }
+
+  /* ── le royaume, la tour, l'antre ──────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .royaume,
+  .tour,
+  .antre {
+    margin: 0 auto 8px;
+    border-collapse: collapse;
+    min-width: 55%;
+  }
+
+  .royaume td,
+  .tour td,
+  .antre td {
+    padding: 3px 8px;
+  }
+
+  /*
+ * Les trois classes de l'antre qui n'avaient aucune règle.
+ *
+ * `VolJeux.asp`:1083 pose son bouton dans un `<p align="center">` et `misc-parts.tsx` fait pareil pour l'exode; c'est tout ce que
+ * `antre-boutons` a jamais eu à être, et l'écran en porte deux côte à côte plutôt qu'un.
+ *
+ * **`borne` et `manque` sont à nous et se lisent comme tel.** L'archive n'écrit ni le plafond d'un envoi à côté de la case, ni la raison pour
+ * laquelle un sort n'est pas modélisé — le premier est une commodité, le second est la voix de provenance de ce dépôt. Ils prennent donc le
+ * registre discret des notes et non celui du jeu: petits, ternes, à côté de la chose qu'ils qualifient sans la remplacer.
+ */
+  /*
+ * Le tableau des bâtiments du rapport d'espionnage — `VolJeux.asp`:604, quatorze colonnes sur une seule ligne de pierre.
+ *
+ * **La pierre ne fait qu'une ligne de haut.** `bas-large.jpg` est un filet de 15px posé en `repeat-x`, donc un entête qui passe à la ligne
+ * laisse la seconde ligne sur `--hh-bandeau` nu — une bande bleue en travers du tableau, ce qu'on voyait sous « Tour de guet ». Le `nowrap`
+ * est donc une contrainte du filet et pas un goût.
+ *
+ * **Le défilement est à nous**, comme `borne` et `manque` le sont: quatorze entêtes en toutes lettres dépassent les 780px du cadre, et
+ * l'archive les imprimait dans une fenêtre qui ne défilait pas. Aucune valeur recouvrée ne bouge — le tableau garde ses colonnes, son ordre
+ * et ses mots; c'est le cadre autour qui cède.
+ */
+  .antre-batiments {
+    max-width: 780px;
+    margin: 0 auto 8px;
+    overflow-x: auto;
+  }
+
+  .antre-batiments .bande {
+    white-space: nowrap;
+    padding: 3px 5px;
+  }
+
+  .antre-batiments td {
+    padding: 3px 5px;
+  }
+
+  .antre-boutons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px auto;
+  }
+
+  .borne {
+    font-size: 12px;
+    color: var(--hh-filet);
+    white-space: nowrap;
+  }
+
+  .manque {
+    max-width: 605px;
+    margin: 4px auto 0;
+    color: #6b6b50;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  /* ── la tour ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  /*
+ * `MagieJeux.asp`, measured off its own tags: a 60% table of two image links, a 61% header bar on `Entetebaslong.jpg`, and under it a 60%
+ * table with a one-pixel `#999977` border and two cells at 40% and 60%. The left cell is the mage, the right is the roster.
+ */
+  .magie-liens {
+    width: 60%;
+    margin: 0 auto 12px;
+  }
+
+  .magie-liens td {
+    width: 50%;
+    text-align: center;
+  }
+
+  .magie-lien {
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    background-repeat: no-repeat;
+  }
+
+  .magie-lien:hover {
+    background-image: var(--survol) !important;
+  }
+
+  /* `LienMagieJeu.jpg` is the odd one of the three: `width="100" height="59"` where the other two are `width="150" height="40"`. */
+  .magie-lien-tour {
+    width: 100px;
+    height: 59px;
+  }
+
+  .magie-bandeau {
+    width: 61%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: var(--hh-bandeau) url('classic/filets/bas-long.jpg') repeat-x 0 0;
+    color: var(--hh-titre);
+  }
+
+  .magie-bandeau td:first-child {
+    width: 40%;
+  }
+
+  .magie-tour {
+    width: 60%;
+    margin: 0 auto 12px;
+    border-collapse: collapse;
+    border: 1px solid var(--hh-filet);
+    text-align: left;
+  }
+
+  .magie-tour > tbody > tr > td {
+    border: 1px solid var(--hh-filet);
+  }
+
+  .magie-mage {
+    width: 40%;
+  }
+
+  .magie-mage p {
+    margin: 4px 0;
+  }
+
+  .magie-mage img {
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+
+  .magie-sorts {
+    width: 60%;
+  }
+
+  /*
+ * A row is the description and two gates. The original's inner table is 80/10/10 and its numbers sit in brackets where an icon would be, so
+ * the two narrow columns hold either an image or `(1 500)` and never both.
+ */
+  .magie-sorts table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .magie-sorts td:first-child {
+    width: 80%;
+  }
+
+  .magie-sorts td + td {
+    width: 10%;
+    white-space: nowrap;
+  }
+
+  /*
+ * An out-of-reach spell is `#666633` — a dimmer olive of the same body colour — with the gate you have not met beside it. That is the whole
+ * of the page's visual grammar: readable means castable, dim means not, and the bracketed number is the one thing in your way.
+ */
+  .hors-portee,
+  .hors-portee td {
+    color: #666633;
+  }
+
+  /* The maléa's selector, on `lhs_bkg.jpg` under its own header. Ours stands in the same cell for a different reason — see `magie.tsx`. */
+  .magie-choix {
+    margin-top: 10px;
+    border-top: 1px solid var(--hh-filet);
+    text-align: center;
+  }
+
+  .magie-choix table {
+    width: 100%;
+  }
+
+  .magie-choix td {
+    text-align: left;
+    padding: 1px 4px;
+  }
+
+  /* `MagieLance.asp`: three small centred tables and two buttons. The original's are 18%, 60% and 30% wide, and only the first and last are ruled. */
+  .magie-choisir,
+  .magie-charge {
+    margin: 8px auto;
+    border-collapse: collapse;
+  }
+
+  .magie-choisir td,
+  .magie-charge td {
+    padding: 3px 8px;
+  }
+
+  .magie-charge {
+    border: 1px solid #333333;
+  }
+
+  .magie-boutons {
+    text-align: center;
+  }
+
+  /* `MagieActif.asp`'s legend and its list, both centred, both one line per spell. */
+  .magie-legende,
+  .magie-actif {
+    text-align: center;
+  }
+
+  .magie-legende img,
+  .magie-actif img {
+    vertical-align: middle;
+    margin: 0 2px;
+  }
+
+  .magie-jours {
+    color: #ffffff;
+  }
+
+  /* ── le guide ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  .guide-corps {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .guide-corps h3 {
+    color: var(--hh-titre);
+    font-size: 16px;
+    margin: 14px 0 4px;
+  }
+
+  .guide-corps p {
+    margin: 6px 0;
+  }
+
+  /*
+ * The guide's section header is marble, and the game's is stone.
+ *
+ * `Entetebaslong.jpg` over `#000066` is what `InfoGen.asp` and every other screen used, and it is not what the guide used: `GuideRaces.htm`
+ * heads each race with `BarMarbreVide.jpg` (200x30) + the race's named plate (400x30) + `BarMarbreVide.jpg` again, and `GuideRegles.htm`
+ * heads each rule with `MarbreRegleEconomie.jpg` and its kin. A named plate is the blank one with a word on it, so the bar repeated under
+ * the heading's own text draws the same thing for a heading the archive never cut a plate for.
+ */
+  .guide-corps .bandeau {
+    background: url('classic/marbre/barre.jpg') repeat-x 0 0;
+    color: var(--hh-parchemin);
+    font-size: 15px;
+    line-height: 30px;
+    padding: 0 10px;
+    margin: 18px auto 8px;
+    text-align: center;
+  }
+
+  .guide-liste {
+    margin: 4px 0 10px;
+    padding-left: 22px;
+  }
+
+  .guide-liste li {
+    margin: 3px 0;
+  }
+
+  .guide-corps img {
+    vertical-align: middle;
+  }
+
+  /* A race portrait sits beside its lore, as GuideRaces.htm laid it out. */
+  .guide-corps p > img {
+    float: left;
+    margin: 0 12px 6px 0;
+  }
+
+  .guide-corps .bandeau {
+    clear: both;
+  }
+
+  /* `<div align="justify">` wrapped every page of the 2006 guide. */
+  .guide-corps p {
+    text-align: justify;
+  }
+
+  /*
+ * A circle plate — `## ![Cercle de la terre](classic/manuel/cercles/terre.jpg)`.
+ *
+ * `GuideMagie.htm` headed each circle with `marbreTerre.jpg` and no text at all, then an italic line under it: « (nature et prosperité) ».
+ * A heading whose whole content is an image is that plate, so it drops the stone strip and shows the marble. The distinction is made here
+ * rather than in the renderer, because it is a question of how a heading looks and not of what it is.
+ */
+  .guide-corps .bandeau:has(img) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  /*
+ * A plate with its own ornaments — the magic circles, `earth1.jpg` on either side of `marbreTerre.jpg` — brings its own ground and wants
+ * none from the bar. A plate without them — a race name — is a 400px cut of a bar the guide drew 800px wide, and the marble under it is
+ * the other 400.
+ */
+  .guide-corps .bandeau:has(img[alt='']) {
+    background: none;
+    padding: 20px 0 0;
+  }
+
+  /* The plate at its own size, the two ornaments stretched to fill what is left — `width="7%" height="30"`, which is what the source says. */
+  .guide-corps .bandeau:has(img) img[alt=''] {
+    flex: 0 1 7%;
+    height: 30px;
+    object-fit: fill;
+  }
+
+  .guide-corps .bandeau:has(img) + p {
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  /*
+ * `<table width="75%" border="1">`, which in 2003 meant the browser's own bevel. Ours is a flat rule in the colour the game's screens use
+ * for a table border, because the bevel was a shade of grey nobody chose.
+ */
+  .guide-tableau {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 10px 0 16px;
+  }
+
+  .guide-corps table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .guide-corps th,
+  .guide-corps td {
+    border: 1px solid var(--hh-filet);
+    padding: 3px 8px;
+    vertical-align: top;
+  }
+
+  .guide-corps th {
+    background: var(--hh-bandeau);
+    color: var(--hh-titre);
+    text-align: left;
+  }
+
+  /* ── Guide.htm, in its own frame ───────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  /*
+ * The guide's frameset was cols="140,*" and it filled the window — unlike the game, whose screens are fixed-width tables and so are centred.
+ * These are pages of prose: they take the width they are given, which is what the original did.
+ */
+  .manuel {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: start;
+    min-height: 100vh;
+    /* GuideMenu.htm: text="#CCCC66", a third value distinct from the game's #999966 and its menu's #CCCC00. */
+    color: #cccc66;
+  }
+
+  .manuel-colonne {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 6px 0 20px;
+  }
+
+  .manuel-logo {
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* « Votre guide » — the column's title, under the logo. Not a link in the original, so not one here. */
+  .manuel-titre {
+    display: block;
+    margin: 0 auto 6px;
+  }
+
+  .manuel-bouton {
+    display: block;
+    text-align: center;
+  }
+
+  .manuel-bouton img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .manuel-bouton.faible {
+    filter: grayscale(70%) brightness(0.5);
+    cursor: default;
+  }
+
+  .manuel-retour {
+    margin: 14px 4px;
+    font-size: 12px;
+  }
+
+  .manuel-retour a {
+    color: #cccc66;
+  }
+
+  .manuel-page {
+    padding: 10px 24px 40px 20px;
+    min-width: 0;
+  }
+
+  /* `<img src="Images/TitreMagie.jpg" alt="Magie" width="280" height="80">`, centred in a `width="75%"` table with nothing else in it. */
+  .manuel-banniere {
+    display: block;
+    margin: 0 auto 6px;
+  }
+
+  /* `GuideRegles.htm`'s row of link plates: three 200x30 bars centred, with the page they open written on them. */
+  .manuel-onglets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    max-width: var(--hh-manuel-page);
+    margin: 0 auto 14px;
+  }
+
+  .manuel-onglets a {
+    background: url('classic/marbre/barre.jpg') repeat-x 0 0;
+    color: #cccc66;
+    font-size: 13px;
+    line-height: 30px;
+    min-width: 180px;
+    padding: 0 14px;
+    text-align: center;
+  }
+
+  .manuel-onglets a:hover,
+  .manuel-onglets a.actif {
+    color: var(--hh-parchemin);
+    font-weight: bold;
+  }
+
+  .manuel-page .guide-corps {
+    max-width: var(--hh-manuel-page);
+    color: #cccc66;
+  }
+
+  /*
+ * Inside the manual a section header spans the page rather than centring at the game's table width — but the page is not the window.
+ *
+ * `GuideMagie.htm` is `<blockquote><blockquote><blockquote>` around a `width="75%"` body: three levels of indent inside three quarters of a
+ * window nobody ran wider than about 1024. Letting the strip run the full width of a modern screen drew a navy rule two thousand pixels long
+ * over four hundred pixels of text, which is what a header looks like when it inherits a frame's width instead of a page's.
+ */
+  .manuel-page .bandeau,
+  .manuel-page .filet {
+    max-width: 100%;
+  }
+
+  .manuel-page .guide-liste {
+    padding-left: 26px;
+  }
+
+  /* ── Hors-jeu ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+
+  /*
+ * The era tools, and everything about this block says « not the game ».
+ *
+ * No `bandeau`, no filet, no entête: a dotted border and Verdana, the same treatment `.manques` gets, because both are notes to whoever is
+ * building this rather than anything a player was ever shown. It creates and destroys worlds — it should not look like it belongs to one.
+ */
+  .admin {
+    max-width: 605px;
+    margin: 28px auto 0;
+    padding: 8px 10px;
+    border: 1px dashed var(--hh-filet);
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 11px;
+    color: #8a8a70;
+    text-align: left;
+  }
+
+  .admin-titre {
+    margin: 0 0 8px;
+    color: var(--hh-titre);
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .admin-bloc {
+    padding-bottom: 6px;
+    border-bottom: 1px dotted var(--hh-filet);
+  }
+
+  .admin-ligne {
+    margin: 0 0 5px;
+  }
+
+  .admin-ligne label {
+    white-space: nowrap;
+  }
+
+  .admin-table {
+    width: 100%;
+    margin-top: 6px;
+    border-collapse: collapse;
+  }
+
+  .admin-table td {
+    padding: 4px 2px;
+    border-bottom: 1px dotted var(--hh-filet);
+    vertical-align: middle;
+  }
+
+  .admin-outils {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .admin-detail {
+    color: #6b6b50;
+  }
+
+  .admin-note {
+    margin: 8px 0 0;
+    color: #6b6b50;
+  }
+
+  /*
+ * A button that destroys something — and the `min-width` is the whole point of the class.
+ *
+ * Both states of it are the same width, so arming one does not re-lay-out the row under the cursor between the two clicks a confirmation is
+ * made of. Without it the second click lands on whatever slid into that spot, which during the first pass through this panel was « +100 000
+ * à tous ».
+ */
+  .admin-danger {
+    min-width: 84px;
+  }
+
+  /* Asked once, waiting to be asked again. */
+  .admin-arme {
+    font-weight: bold;
+    color: #800000;
+  }
+
+  /* What a tool said it did. Its own cell, so a long answer cannot push the buttons sideways either. */
+  .admin-dit {
+    width: 1%;
+    padding-right: 8px;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* Both right-hand columns hug their content, which leaves the era's name the whole of the rest rather than three wrapped lines of it. */
+  .admin-table .admin-outils {
+    width: 1%;
+  }
+
+  /*
+ * ── la royauté: le roi en rouge, le duc en aqua ────────────────────────────────────────────────────────────────────────────────
+ *
+ * `monarchie.asp` prints its own legend under the candidature table — « *Le chef élu actuellement est de couleur rouge. **Le duc nommé
+ * actuellement est de couleur aqua. » — and the two classes were set on the rows from the day the table filled with nothing to render them.
+ * A legend explaining a colour the page does not use is the same lie as a prohibition it does not apply (**C10**), so here are the colours.
+ *
+ * **Les deux couleurs étaient fausses, et `royaumeClan` en promettait deux de plus que personne n'avait écrites.** Ce commentaire disait « red
+ * is the alert red the original already had; aqua is HTML's own `aqua`, which is the word the legend uses » — le mot plutôt que le `<font
+ * color>` qui le peint. Les vraies sont `#FF3000` et `#099999`, et la légende de chaque page s'écrit dans la sienne. Voir les jetons.
+ *
+ * `chef` et `moi` sont les mêmes deux rôles vus de `royaumeClan.asp`, où la légende du lecteur remplace celle du duc: « *Votre seigneurie est
+ * de couleur aqua », « ***Le chef de clan est de couleur rouge ». Les deux classes étaient posées sur les lignes et **aucune n'avait de règle**,
+ * donc cet écran-là imprimait sa légende sous un tableau entièrement beige. C10 encore.
+ */
+  .royaume tr.roi td,
+  .royaume tr.chef td {
+    color: var(--hh-role-rouge);
+  }
+
+  .royaume tr.duc td,
+  .royaume tr.moi td {
+    color: var(--hh-role-aqua);
+  }
+
+  /*
+ * Une annonce d'état, et ce n'est pas un refus.
+ *
+ * `MarcheJeux.asp` écrit « En période de protection aucun accès à la réserve n'est permis » en `#66CC33` — le vert que `Default.css`
+ * réserve à `.message3` — et remplace le formulaire par cette phrase au lieu de le dessiner et de refuser. Le rouge de `.refus` répondrait
+ * à une action; celle-ci explique une absence.
+ */
+  .avis {
+    color: var(--hh-bien);
+    text-align: center;
+  }
+
+  /*
+ * Un bouton seul sous son formulaire, centré — `<div align="center"><p><input type="submit" …>` sur `monarchie.asp`, sept fois.
+ *
+ * Le `align` de l'original est un attribut HTML que React refuse sur un `<p>`; la classe dit la même chose et laisse le TSX lisible.
+ */
+  .bouton-centre {
+    text-align: center;
+    margin: 8px auto;
+  }
+}
