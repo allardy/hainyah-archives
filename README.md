@@ -1,7 +1,7 @@
 # Archives HainyaH
 
 HainyaH était un jeu de stratégie en ligne, gratuit et en français, créé au Québec en 2003 par Patrick Hains et Claude Hayfield, et fermé
-vers 2016. Ce dépôt est le site de ses archives, servi par GitHub Pages : ouvrez `index.html`, ou visitez le site.
+vers 2016. Ce dépôt est le site de ses archives, servi par GitHub Pages : ouvrez `index.html`, ou visitez le site à l'adresse [archives.hainyah.com](https://archives.hainyah.com).
 
 | Dossier | Contenu |
 | --- | --- |
