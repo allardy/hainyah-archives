@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 20px 24px 64px;
+  background: #000;
+  color: #c9c5a8;
+  font: 16px/1.6 Georgia, 'Times New Roman', serif;
+}
+
+.lead {
+  color: #999966;
+  font-size: 14px;
+  border-bottom: 1px solid #3a3826;
+  padding-bottom: 12px;
+}
+
+pre {
+  white-space: pre-wrap;
+  font: inherit;
+  max-width: 900px;
+}
+
+del {
+  color: #e8a09a;
+  background: #3a1612;
+  text-decoration: line-through;
+}
+
+ins {
+  color: #c8e6a0;
+  background: #1e3312;
+  text-decoration: none;
+}

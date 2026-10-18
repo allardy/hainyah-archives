@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le guide, ère par ère — Archives HainyaH</title>
+<meta name="description" content="Le guide des joueurs de HainyaH tel qu'il était à la fin de chaque ère, de 2003 à 2009, avec ce qui a changé d'une ère à l'autre.">
+<link rel="icon" href="../../favicon.ico">
+<link rel="stylesheet" href="../../archive.css">
+<style>
+  html, body { height: 100%; }
+  body { display: flex; flex-direction: column; overflow: hidden; }
+  header { flex: none; min-width: 0; max-width: 100vw; border-bottom: 1px solid var(--edge); background: var(--panel); }
+  .bar { border: 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: baseline; }
+  .bar .sep { color: var(--edge); }
+  .timeline { display: flex; gap: 4px; overflow-x: auto; padding: 4px 16px 10px; scrollbar-width: thin; }
+  .timeline button, .timeline a {
+    flex: none; display: flex; flex-direction: column; align-items: flex-start; gap: 0;
+    padding: 5px 10px; border: 1px solid var(--edge); border-radius: 3px; background: var(--ground);
+    color: var(--ink); font: inherit; font-size: 14px; line-height: 1.25; cursor: pointer; text-decoration: none;
+  }
+  .timeline small { color: var(--ink-soft); font-size: 12px; }
+  .timeline button[aria-current="true"] { border-color: var(--gold); color: var(--parchment); background: #1f1d12; }
+  .timeline button.gap { border-style: dashed; color: #6b6950; cursor: default; }
+  .timeline button.gap small { color: #55533f; }
+  .timeline button:not(.gap):hover, .timeline a:hover { border-color: var(--ink-soft); }
+  .timeline .divider { flex: none; width: 1px; background: var(--edge); margin: 2px 6px; }
+  .era { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; padding: 0 16px 10px; font-size: 14px; }
+  .era h1 { font-size: 20px; margin: 0; }
+  .era .meta { color: var(--ink-soft); min-width: 0; }
+  .era nav { display: flex; gap: 6px; margin-left: auto; }
+  .era nav button, .now button {
+    font: inherit; font-size: 13px; color: var(--gold); background: var(--ground); border: 1px solid var(--edge);
+    border-radius: 3px; padding: 2px 10px; cursor: pointer;
+  }
+  .era nav button:disabled { color: #55533f; cursor: default; }
+  .changes { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 16px 10px; font-size: 13px; }
+  .changes:empty { display: none; }
+  .changes button {
+    font: inherit; border: 1px solid var(--edge); border-radius: 3px; background: none; color: var(--ink); padding: 1px 8px; cursor: pointer;
+  }
+  .changes button b { font-weight: normal; color: var(--ink-soft); }
+  .changes button.new { border-color: #4f5f2e; }
+  .changes button.changed { border-color: #6a5a2a; }
+  .changes .what { color: var(--ink-soft); align-self: center; }
+  .now { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; padding: 6px 16px; border-top: 1px solid var(--edge); font-size: 13px; color: var(--ink-soft); }
+  .now strong { color: var(--parchment); font-weight: normal; font-size: 15px; }
+  .now .tag { border: 1px solid var(--edge); border-radius: 3px; padding: 0 6px; }
+  .now select { display: none; font: inherit; background: var(--ground); color: var(--ink); border: 1px solid var(--edge); }
+  .frames { flex: 1; display: flex; min-height: 0; background: #000; }
+  .frames iframe { border: 0; height: 100%; background: #000; }
+  #menu { width: 150px; flex: none; border-right: 1px solid var(--edge); }
+  #page { flex: 1; min-width: 0; }
+  @media (max-width: 720px) {
+    #menu { display: none; }
+    .now select { display: inline-block; max-width: 100%; }
+    .era nav { margin-left: 0; }
+    .changes { flex-wrap: nowrap; overflow-x: auto; }
+    .changes > * { flex: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a href="../../index.html">Archives HainyaH</a><span class="sep">/</span>
+    <a href="../Guide.htm">Le guide</a><span class="sep">/</span>
+    <span>Ère par ère, 2003–2009</span>
+  </div>
+  <div class="timeline" id="timeline" role="tablist" aria-label="Ères"></div>
+  <div class="era">
+    <h1 id="era-name"></h1>
+    <span class="meta" id="era-meta"></span>
+    <nav>
+      <button id="prev" type="button" aria-label="Ère précédente">← Précédente</button>
+      <button id="next" type="button" aria-label="Ère suivante">Suivante →</button>
+    </nav>
+  </div>
+  <div class="changes" id="changes"></div>
+  <div class="now">
+    <select id="pages" aria-label="Page"></select>
+    <strong id="page-name"></strong>
+    <span id="page-meta"></span>
+    <button id="toggle" type="button" hidden></button>
+    <a id="original" target="_blank" rel="noopener">Ouvrir comme en ligne à l’époque</a>
+  </div>
+</header>
+<div class="frames">
+  <iframe id="menu" name="leftFrame" title="Menu du guide de l’ère"></iframe>
+  <iframe id="page" name="mainFrame" title="Page du guide"></iframe>
+</div>
+<script src="eres.js"></script>
+<script>
+  const $ = (id) => document.getElementById(id)
+  const usable = ERES.filter((e) => !e.gap)
+  const date = (d) => new Date(d + 'T12:00:00').toLocaleDateString('fr-CA', { day: 'numeric', month: 'long', year: 'numeric' })
+  const plural = (n, w) => `${n} ${w}${n > 1 ? 's' : ''}`
+  let era = null
+  let page = null
+  let diff = false
+
+  const timeline = $('timeline')
+  let asideStarted = false
+  for (const e of ERES) {
+    if (e.aside && !asideStarted) {
+      asideStarted = true
+      timeline.append(Object.assign(document.createElement('span'), { className: 'divider' }))
+    }
+    const b = document.createElement('button')
+    b.type = 'button'
+    b.dataset.slug = e.slug
+    b.innerHTML = `${e.name}<small>${e.aside ? 'à part' : e.start.slice(0, 4)}</small>`
+    if (e.gap) {
+      b.className = 'gap'
+      b.title = `${e.title} : aucune capture du guide pendant cette ère`
+      b.setAttribute('aria-disabled', 'true')
+    } else b.onclick = () => open(e.slug, page)
+    timeline.append(b)
+  }
+  const full = Object.assign(document.createElement('a'), { href: '../Guide.htm', target: '_blank', rel: 'noopener' })
+  full.innerHTML = 'Le guide de 2010<small>complet</small>'
+  timeline.append(full)
+
+  const find = (file) => era.pages.find((p) => p.file.toLowerCase() === (file ?? '').toLowerCase())
+
+  const open = (slug, want, showDiff = false) => {
+    const next = usable.find((e) => e.slug === slug) ?? usable[0]
+    if (next !== era) {
+      era = next
+      $('menu').hidden = !era.menu
+      $('menu').src = era.menu ? `${era.slug}/GuideMenu.htm` : 'about:blank'
+      renderEra()
+    }
+    const target = find(want) ?? find(era.front) ?? era.pages[0]
+    diff = showDiff && target.status === 'changed'
+    page = target.file
+    $('page').src = diff ? `diff/${era.slug}/${page}.html` : `${era.slug}/${page}`
+    renderPage()
+  }
+
+  const renderEra = () => {
+    for (const b of timeline.querySelectorAll('button')) b.setAttribute('aria-current', String(b.dataset.slug === era.slug))
+    timeline.querySelector('[aria-current="true"]')?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+    $('era-name').textContent = era.title
+    const changed = era.pages.filter((p) => p.status === 'changed')
+    const fresh = era.pages.filter((p) => p.status === 'new')
+    $('era-meta').textContent = era.aside
+      ? `capturé le ${date(era.start)} · ${plural(era.pages.length, 'page')}`
+      : `du ${date(era.start)} au ${date(era.end)} · ${plural(era.pages.length, 'page')}` +
+        (era === usable[0] ? '' : ` · ${changed.length} modifiée${changed.length > 1 ? 's' : ''} · ${fresh.length} nouvelle${fresh.length > 1 ? 's' : ''}`)
+    const i = usable.indexOf(era)
+    $('prev').disabled = era.aside || i === 0
+    $('next').disabled = era.aside || usable[i + 1]?.aside !== false
+    const box = $('changes')
+    box.replaceChildren()
+    if (!era.aside && era !== usable[0] && (changed.length || fresh.length)) {
+      box.append(Object.assign(document.createElement('span'), { className: 'what', textContent: 'Ce qui a changé :' }))
+      for (const p of [...fresh, ...changed.sort((a, b) => b.changed - a.changed)]) {
+        const b = document.createElement('button')
+        b.type = 'button'
+        b.className = p.status
+        b.innerHTML = p.status === 'new' ? `${p.label} <b>nouvelle</b>` : `${p.label} <b>${plural(p.changed, 'mot')}</b>`
+        b.onclick = () => open(era.slug, p.file, p.status === 'changed')
+        box.append(b)
+      }
+    } else if (!era.aside && era !== usable[0]) {
+      box.append(Object.assign(document.createElement('span'), { className: 'what', textContent: 'Aucune page n’a changé pendant cette ère.' }))
+    }
+    $('pages').replaceChildren(...era.pages.map((p) => new Option(p.label, p.file)))
+    $('original').href = `${era.slug}/Guide.htm`
+  }
+
+  const renderPage = () => {
+    const p = find(page)
+    $('pages').value = page
+    $('page-name').textContent = p ? p.label : page
+    const bits = []
+    if (p) {
+      bits.push(`capturée le ${date(p.captured)}`)
+      if (!p.during && !era.aside) bits.push('copie antérieure à l’ère, la seule qui reste')
+      if (!era.aside && era !== usable[0]) bits.push(p.status === 'new' ? 'nouvelle dans cette ère' : p.status === 'changed' ? `${plural(p.changed, 'mot')} changés` : 'inchangée')
+    }
+    $('page-meta').textContent = bits.join(' · ')
+    const toggle = $('toggle')
+    toggle.hidden = !p || p.status !== 'changed'
+    toggle.textContent = diff ? 'Voir la page' : 'Voir les changements'
+    history.replaceState(null, '', `#${era.slug}/${page}${diff ? '/changements' : ''}`)
+  }
+
+  $('toggle').onclick = () => open(era.slug, page, !diff)
+  $('pages').onchange = (e) => open(era.slug, e.target.value)
+  const step = (d) => {
+    const i = usable.indexOf(era) + d
+    if (!era.aside && usable[i] && !usable[i].aside) open(usable[i].slug, page)
+  }
+  $('prev').onclick = () => step(-1)
+  $('next').onclick = () => step(1)
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('select')) return
+    if (e.key === 'ArrowLeft') step(-1)
+    if (e.key === 'ArrowRight') step(1)
+  })
+
+  // A link followed inside the frames changes the page: read it back so the header, the hash and the next era switch follow it.
+  $('page').addEventListener('load', () => {
+    let path
+    try {
+      path = $('page').contentWindow.location.pathname
+    } catch {
+      return
+    }
+    const [folder, file] = decodeURIComponent(path).split('/').slice(-2)
+    if (folder === era.slug && file && find(file)) {
+      page = find(file).file
+      diff = false
+      renderPage()
+    }
+  })
+
+  const [slug, file, mode] = decodeURIComponent(location.hash.slice(1)).split('/')
+  open(slug, file, mode === 'changements')
+</script>
+</body>
+</html>
