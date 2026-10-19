@@ -9,6 +9,7 @@ const ERES = [
   "aside": false,
   "front": "GuideHistoire.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -93,6 +94,7 @@ const ERES = [
   "aside": false,
   "front": "GuideHistoire.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -209,6 +211,7 @@ const ERES = [
   "aside": false,
   "front": "GuideHistoire.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -341,14 +344,15 @@ const ERES = [
   "aside": false,
   "front": "GuideHistoire.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
     "label": "Bâtiments",
-    "captured": "2004-07-17",
+    "captured": "2004-04-14",
     "during": true,
     "status": "changed",
-    "changed": 116
+    "changed": 51
    },
    {
     "file": "Guideguerre.htm",
@@ -503,24 +507,25 @@ const ERES = [
   "start": "2004-07-19",
   "end": "2004-11-14",
   "aside": false,
-  "front": "GuideDepart.htm",
+  "front": "GuideHistoireMain.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
     "label": "Bâtiments",
-    "captured": "2004-11-10",
+    "captured": "2004-07-17",
     "during": true,
     "status": "changed",
-    "changed": 15
+    "changed": 65
    },
    {
     "file": "Guideguerre.htm",
     "label": "Combat",
-    "captured": "2004-11-10",
+    "captured": "2004-08-05",
     "during": true,
-    "status": "changed",
-    "changed": 185
+    "status": "same",
+    "changed": 0
    },
    {
     "file": "GuideConseiller.htm",
@@ -531,17 +536,9 @@ const ERES = [
     "changed": 0
    },
    {
-    "file": "GuideDepart.htm",
-    "label": "Départ",
-    "captured": "2004-11-09",
-    "during": true,
-    "status": "new",
-    "changed": 0
-   },
-   {
     "file": "GuideGeneseFin.htm",
     "label": "Fin de l’ère de la Genèse",
-    "captured": "2004-11-11",
+    "captured": "2004-10-26",
     "during": true,
     "status": "changed",
     "changed": 5
@@ -549,7 +546,7 @@ const ERES = [
    {
     "file": "GuideNoblesseFin.htm",
     "label": "Fin de l’ère de la Noblesse",
-    "captured": "2004-11-11",
+    "captured": "2004-10-26",
     "during": true,
     "status": "changed",
     "changed": 5
@@ -557,7 +554,7 @@ const ERES = [
    {
     "file": "GuideMDGFin.htm",
     "label": "Fin de l’ère des Maîtres de guerre",
-    "captured": "2004-11-11",
+    "captured": "2004-10-26",
     "during": true,
     "status": "new",
     "changed": 0
@@ -565,7 +562,7 @@ const ERES = [
    {
     "file": "GuideSombreFin.htm",
     "label": "Fin de l’ère sombre",
-    "captured": "2004-11-11",
+    "captured": "2004-10-29",
     "during": true,
     "status": "changed",
     "changed": 5
@@ -573,15 +570,15 @@ const ERES = [
    {
     "file": "Guideglossaire.htm",
     "label": "Glossaire",
-    "captured": "2004-11-10",
+    "captured": "2004-10-29",
     "during": true,
-    "status": "changed",
-    "changed": 57
+    "status": "same",
+    "changed": 0
    },
    {
     "file": "GuideHistoireMain.htm",
     "label": "Histoire",
-    "captured": "2004-11-10",
+    "captured": "2004-10-10",
     "during": true,
     "status": "new",
     "changed": 0
@@ -597,7 +594,7 @@ const ERES = [
    {
     "file": "GuideHistoire1.htm",
     "label": "Histoire — livre 1",
-    "captured": "2004-11-11",
+    "captured": "2004-10-26",
     "during": true,
     "status": "changed",
     "changed": 3
@@ -605,7 +602,7 @@ const ERES = [
    {
     "file": "GuideHistoire2.htm",
     "label": "Histoire — livre 2",
-    "captured": "2004-11-11",
+    "captured": "2004-10-26",
     "during": true,
     "status": "changed",
     "changed": 3
@@ -613,7 +610,7 @@ const ERES = [
    {
     "file": "GuideHistoire3.htm",
     "label": "Histoire — livre 3",
-    "captured": "2004-11-11",
+    "captured": "2004-10-26",
     "during": true,
     "status": "changed",
     "changed": 3
@@ -621,7 +618,7 @@ const ERES = [
    {
     "file": "GuideHistoire4.htm",
     "label": "Histoire — livre 4",
-    "captured": "2004-11-11",
+    "captured": "2004-10-26",
     "during": true,
     "status": "new",
     "changed": 0
@@ -629,15 +626,15 @@ const ERES = [
    {
     "file": "GuideMagie.htm",
     "label": "Magie",
-    "captured": "2004-11-10",
+    "captured": "2004-07-19",
     "during": true,
     "status": "changed",
-    "changed": 832
+    "changed": 787
    },
    {
     "file": "GuideMenu.htm",
     "label": "Menu",
-    "captured": "2004-11-10",
+    "captured": "2004-10-10",
     "during": true,
     "status": "same",
     "changed": 0
@@ -661,10 +658,10 @@ const ERES = [
    {
     "file": "GuideRaces.htm",
     "label": "Races",
-    "captured": "2004-11-09",
+    "captured": "2004-07-20",
     "during": true,
     "status": "changed",
-    "changed": 777
+    "changed": 565
    },
    {
     "file": "Guideroyaute.htm",
@@ -677,18 +674,18 @@ const ERES = [
    {
     "file": "GuideScience.htm",
     "label": "Science",
-    "captured": "2004-11-10",
+    "captured": "2004-07-23",
     "during": true,
     "status": "changed",
-    "changed": 19
+    "changed": 10
    },
    {
     "file": "GuideVoleur.htm",
     "label": "Vol",
-    "captured": "2004-11-10",
+    "captured": "2004-08-05",
     "during": true,
-    "status": "changed",
-    "changed": 18
+    "status": "same",
+    "changed": 0
    }
   ]
  },
@@ -701,22 +698,23 @@ const ERES = [
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
     "label": "Bâtiments",
     "captured": "2005-02-10",
     "during": true,
-    "status": "same",
-    "changed": 0
+    "status": "changed",
+    "changed": 15
    },
    {
     "file": "Guideguerre.htm",
     "label": "Combat",
     "captured": "2004-12-11",
     "during": true,
-    "status": "same",
-    "changed": 0
+    "status": "changed",
+    "changed": 185
    },
    {
     "file": "GuideConseiller.htm",
@@ -731,7 +729,7 @@ const ERES = [
     "label": "Départ",
     "captured": "2004-12-11",
     "during": true,
-    "status": "same",
+    "status": "new",
     "changed": 0
    },
    {
@@ -770,9 +768,9 @@ const ERES = [
     "file": "Guideglossaire.htm",
     "label": "Glossaire",
     "captured": "2004-11-10",
-    "during": false,
-    "status": "same",
-    "changed": 0
+    "during": true,
+    "status": "changed",
+    "changed": 57
    },
    {
     "file": "GuideHistoireMain.htm",
@@ -827,8 +825,8 @@ const ERES = [
     "label": "Magie",
     "captured": "2004-12-11",
     "during": true,
-    "status": "same",
-    "changed": 0
+    "status": "changed",
+    "changed": 137
    },
    {
     "file": "GuideMenu.htm",
@@ -859,8 +857,8 @@ const ERES = [
     "label": "Races",
     "captured": "2004-12-11",
     "during": true,
-    "status": "same",
-    "changed": 0
+    "status": "changed",
+    "changed": 290
    },
    {
     "file": "Guideroyaute.htm",
@@ -875,16 +873,16 @@ const ERES = [
     "label": "Science",
     "captured": "2004-12-11",
     "during": true,
-    "status": "same",
-    "changed": 0
+    "status": "changed",
+    "changed": 19
    },
    {
     "file": "GuideVoleur.htm",
     "label": "Vol",
     "captured": "2004-12-11",
     "during": true,
-    "status": "same",
-    "changed": 0
+    "status": "changed",
+    "changed": 18
    }
   ]
  },
@@ -913,6 +911,7 @@ const ERES = [
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -1165,6 +1164,7 @@ const ERES = [
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -1417,6 +1417,7 @@ const ERES = [
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -1669,11 +1670,12 @@ const ERES = [
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
     "label": "Bâtiments",
-    "captured": "2007-08-08",
+    "captured": "2007-04-05",
     "during": true,
     "status": "changed",
     "changed": 31
@@ -1681,26 +1683,26 @@ const ERES = [
    {
     "file": "Guideguerre.htm",
     "label": "Combat",
-    "captured": "2007-08-08",
+    "captured": "2007-04-05",
     "during": true,
     "status": "changed",
-    "changed": 493
+    "changed": 66
    },
    {
     "file": "GuideConseiller.htm",
     "label": "Conseillers",
-    "captured": "2007-08-06",
-    "during": true,
-    "status": "changed",
-    "changed": 11
+    "captured": "2006-06-18",
+    "during": false,
+    "status": "same",
+    "changed": 0
    },
    {
     "file": "GuideDepart.htm",
     "label": "Départ",
-    "captured": "2007-08-08",
-    "during": true,
-    "status": "changed",
-    "changed": 253
+    "captured": "2006-06-18",
+    "during": false,
+    "status": "same",
+    "changed": 0
    },
    {
     "file": "GuideGeneseFin.htm",
@@ -1841,16 +1843,16 @@ const ERES = [
    {
     "file": "GuideMenu.htm",
     "label": "Menu",
-    "captured": "2007-08-10",
-    "during": true,
+    "captured": "2005-02-08",
+    "during": false,
     "status": "same",
     "changed": 0
    },
    {
     "file": "GuideMilitaire.htm",
     "label": "Militaire",
-    "captured": "2007-08-07",
-    "during": true,
+    "captured": "2006-12-09",
+    "during": false,
     "status": "same",
     "changed": 0
    },
@@ -1889,10 +1891,10 @@ const ERES = [
    {
     "file": "Guideroyaute.htm",
     "label": "Royaume",
-    "captured": "2007-08-06",
+    "captured": "2007-04-05",
     "during": true,
-    "status": "changed",
-    "changed": 1071
+    "status": "same",
+    "changed": 0
    },
    {
     "file": "GuideScience.htm",
@@ -1921,6 +1923,7 @@ const ERES = [
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -1934,17 +1937,17 @@ const ERES = [
     "file": "Guideguerre.htm",
     "label": "Combat",
     "captured": "2007-08-08",
-    "during": false,
-    "status": "same",
-    "changed": 0
+    "during": true,
+    "status": "changed",
+    "changed": 463
    },
    {
     "file": "GuideConseiller.htm",
     "label": "Conseillers",
     "captured": "2007-08-06",
-    "during": false,
-    "status": "same",
-    "changed": 0
+    "during": true,
+    "status": "changed",
+    "changed": 11
    },
    {
     "file": "GuideDepart.htm",
@@ -1952,7 +1955,7 @@ const ERES = [
     "captured": "2007-10-13",
     "during": true,
     "status": "changed",
-    "changed": 2
+    "changed": 255
    },
    {
     "file": "GuideGeneseFin.htm",
@@ -2094,7 +2097,7 @@ const ERES = [
     "file": "GuideMenu.htm",
     "label": "Menu",
     "captured": "2007-08-10",
-    "during": false,
+    "during": true,
     "status": "same",
     "changed": 0
    },
@@ -2102,7 +2105,7 @@ const ERES = [
     "file": "GuideMilitaire.htm",
     "label": "Militaire",
     "captured": "2007-08-07",
-    "during": false,
+    "during": true,
     "status": "same",
     "changed": 0
    },
@@ -2144,7 +2147,7 @@ const ERES = [
     "captured": "2007-12-15",
     "during": true,
     "status": "changed",
-    "changed": 47
+    "changed": 1024
    },
    {
     "file": "GuideScience.htm",
@@ -2173,6 +2176,7 @@ const ERES = [
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -2425,6 +2429,7 @@ const ERES = [
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -2677,6 +2682,7 @@ const ERES = [
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -2937,6 +2943,7 @@ const ERES = [
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -3185,10 +3192,11 @@ const ERES = [
   "name": "Clans",
   "title": "L’Ère des Clans",
   "start": "2009-11-19",
-  "end": "2010-06-09",
+  "end": "2011-06-02",
   "aside": false,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -3409,10 +3417,10 @@ const ERES = [
    {
     "file": "Guideroyaute.htm",
     "label": "Royaume",
-    "captured": "2008-04-18",
-    "during": false,
-    "status": "same",
-    "changed": 0
+    "captured": "2010-12-11",
+    "during": true,
+    "status": "changed",
+    "changed": 1095
    },
    {
     "file": "GuideScience.htm",
@@ -3433,6 +3441,991 @@ const ERES = [
   ]
  },
  {
+  "slug": "reincarnation",
+  "name": "Réincarnation",
+  "title": "L’Ère de la Réincarnation",
+  "start": "2011-06-02",
+  "end": "2011-09-12",
+  "gap": true
+ },
+ {
+  "slug": "savoir",
+  "name": "Savoir",
+  "title": "L’Ère du Savoir",
+  "start": "2011-09-12",
+  "end": "2012-01-08",
+  "aside": false,
+  "front": "Guide.html",
+  "menu": false,
+  "frameset": null,
+  "pages": [
+   {
+    "file": "Guide.html",
+    "label": "Accueil du guide",
+    "captured": "2011-10-28",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   }
+  ]
+ },
+ {
+  "slug": "prospection",
+  "name": "Prospection",
+  "title": "L’Ère de la Prospection",
+  "start": "2012-01-08",
+  "end": "2012-05-01",
+  "gap": true
+ },
+ {
+  "slug": "arcanes",
+  "name": "Arcanes",
+  "title": "L’Ère des Arcanes",
+  "start": "2012-05-01",
+  "end": "2012-09-01",
+  "aside": false,
+  "front": "Guide.html",
+  "menu": false,
+  "frameset": null,
+  "pages": [
+   {
+    "file": "Guide.html",
+    "label": "Accueil du guide",
+    "captured": "2011-10-28",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideVille.html",
+    "label": "Bâtiments",
+    "captured": "2012-08-08",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideCombats.html",
+    "label": "Combats",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideCombats2.html",
+    "label": "Combats — comment attaquer",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideDebut.html",
+    "label": "Comment débuter",
+    "captured": "2012-08-08",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideContacts.html",
+    "label": "Contacts",
+    "captured": "2012-08-08",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuidePrincipes.html",
+    "label": "Description",
+    "captured": "2012-08-08",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideEconomie.html",
+    "label": "Économie",
+    "captured": "2012-08-06",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideExodes.html",
+    "label": "Exodes",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideExplorations.html",
+    "label": "Explorations",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideVol.html",
+    "label": "Guilde de voleurs",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideVol1.html",
+    "label": "Guilde de voleurs — niveaux",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideHistoires1.html",
+    "label": "Histoires",
+    "captured": "2012-05-21",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie.html",
+    "label": "Magie",
+    "captured": "2012-05-21",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie2.html",
+    "label": "Magie — détails",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie1.html",
+    "label": "Magie — lancer un sort",
+    "captured": "2012-05-21",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideNoblesse.html",
+    "label": "Noblesse",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideNouveau.html",
+    "label": "Nouveauté de l’ère",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuidePeriodes.html",
+    "label": "Périodes",
+    "captured": "2012-08-09",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideDetails.html",
+    "label": "Plus de détails",
+    "captured": "2012-08-14",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuidePayant.html",
+    "label": "Privilèges et oracles",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideRaces.html",
+    "label": "Races",
+    "captured": "2012-05-21",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideRaces1.html",
+    "label": "Races — fiches",
+    "captured": "2012-07-24",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideRoyaumes.html",
+    "label": "Royaumes",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideSciences.html",
+    "label": "Sciences",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideMilitaire.html",
+    "label": "Unités militaires",
+    "captured": "2012-05-23",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   }
+  ]
+ },
+ {
+  "slug": "chatiments",
+  "name": "Châtiments",
+  "title": "L’Ère des Châtiments",
+  "start": "2012-09-01",
+  "end": "2013-01-01",
+  "aside": false,
+  "front": "Guide.html",
+  "menu": false,
+  "frameset": null,
+  "pages": [
+   {
+    "file": "Guide.html",
+    "label": "Accueil du guide",
+    "captured": "2011-10-28",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideVille.html",
+    "label": "Bâtiments",
+    "captured": "2012-10-28",
+    "during": true,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideCombats.html",
+    "label": "Combats",
+    "captured": "2012-11-02",
+    "during": true,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideCombats2.html",
+    "label": "Combats — comment attaquer",
+    "captured": "2012-10-09",
+    "during": true,
+    "status": "changed",
+    "changed": 152
+   },
+   {
+    "file": "GuideCombats1.html",
+    "label": "Combats — le calcul",
+    "captured": "2012-11-02",
+    "during": true,
+    "status": "new",
+    "changed": 0
+   },
+   {
+    "file": "GuideDebut.html",
+    "label": "Comment débuter",
+    "captured": "2012-10-08",
+    "during": true,
+    "status": "changed",
+    "changed": 23
+   },
+   {
+    "file": "GuideContacts.html",
+    "label": "Contacts",
+    "captured": "2012-08-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuidePrincipes.html",
+    "label": "Description",
+    "captured": "2012-08-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideEconomie.html",
+    "label": "Économie",
+    "captured": "2012-10-10",
+    "during": true,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideExodes.html",
+    "label": "Exodes",
+    "captured": "2012-10-07",
+    "during": true,
+    "status": "changed",
+    "changed": 10
+   },
+   {
+    "file": "GuideExplorations.html",
+    "label": "Explorations",
+    "captured": "2012-10-08",
+    "during": true,
+    "status": "changed",
+    "changed": 2
+   },
+   {
+    "file": "GuideVol.html",
+    "label": "Guilde de voleurs",
+    "captured": "2012-10-30",
+    "during": true,
+    "status": "changed",
+    "changed": 7
+   },
+   {
+    "file": "GuideVol1.html",
+    "label": "Guilde de voleurs — niveaux",
+    "captured": "2012-10-30",
+    "during": true,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideHistoires1.html",
+    "label": "Histoires",
+    "captured": "2012-10-25",
+    "during": true,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie.html",
+    "label": "Magie",
+    "captured": "2012-11-02",
+    "during": true,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie2.html",
+    "label": "Magie — détails",
+    "captured": "2012-11-04",
+    "during": true,
+    "status": "changed",
+    "changed": 1230
+   },
+   {
+    "file": "GuideMagie1.html",
+    "label": "Magie — lancer un sort",
+    "captured": "2012-10-25",
+    "during": true,
+    "status": "changed",
+    "changed": 48
+   },
+   {
+    "file": "GuideNoblesse.html",
+    "label": "Noblesse",
+    "captured": "2012-10-08",
+    "during": true,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideNouveau.html",
+    "label": "Nouveauté de l’ère",
+    "captured": "2012-10-24",
+    "during": true,
+    "status": "changed",
+    "changed": 310
+   },
+   {
+    "file": "GuidePeriodes.html",
+    "label": "Périodes",
+    "captured": "2012-10-15",
+    "during": true,
+    "status": "changed",
+    "changed": 14
+   },
+   {
+    "file": "GuideDetails.html",
+    "label": "Plus de détails",
+    "captured": "2012-10-15",
+    "during": true,
+    "status": "changed",
+    "changed": 90
+   },
+   {
+    "file": "GuidePayant.html",
+    "label": "Privilèges et oracles",
+    "captured": "2012-10-30",
+    "during": true,
+    "status": "changed",
+    "changed": 27
+   },
+   {
+    "file": "GuideRaces.html",
+    "label": "Races",
+    "captured": "2012-10-25",
+    "during": true,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideRaces1.html",
+    "label": "Races — fiches",
+    "captured": "2012-10-29",
+    "during": true,
+    "status": "changed",
+    "changed": 206
+   },
+   {
+    "file": "GuideRoyaumes.html",
+    "label": "Royaumes",
+    "captured": "2012-10-30",
+    "during": true,
+    "status": "changed",
+    "changed": 32
+   },
+   {
+    "file": "GuideSciences.html",
+    "label": "Sciences",
+    "captured": "2012-10-07",
+    "during": true,
+    "status": "changed",
+    "changed": 3
+   },
+   {
+    "file": "GuideMilitaire.html",
+    "label": "Unités militaires",
+    "captured": "2012-11-02",
+    "during": true,
+    "status": "same",
+    "changed": 0
+   }
+  ]
+ },
+ {
+  "slug": "souvenirs",
+  "name": "Souvenirs",
+  "title": "L’Ère des Souvenirs",
+  "start": "2013-01-01",
+  "end": "2013-04-27",
+  "aside": false,
+  "front": "Guide.html",
+  "menu": false,
+  "frameset": null,
+  "pages": [
+   {
+    "file": "Guide.html",
+    "label": "Accueil du guide",
+    "captured": "2011-10-28",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideVille.html",
+    "label": "Bâtiments",
+    "captured": "2012-10-28",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideCombats.html",
+    "label": "Combats",
+    "captured": "2012-11-02",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideCombats2.html",
+    "label": "Combats — comment attaquer",
+    "captured": "2012-10-09",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideCombats1.html",
+    "label": "Combats — le calcul",
+    "captured": "2012-11-02",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideDebut.html",
+    "label": "Comment débuter",
+    "captured": "2012-10-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideContacts.html",
+    "label": "Contacts",
+    "captured": "2012-08-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuidePrincipes.html",
+    "label": "Description",
+    "captured": "2012-08-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideEconomie.html",
+    "label": "Économie",
+    "captured": "2012-10-10",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideExodes.html",
+    "label": "Exodes",
+    "captured": "2012-10-07",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideExplorations.html",
+    "label": "Explorations",
+    "captured": "2012-10-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideVol.html",
+    "label": "Guilde de voleurs",
+    "captured": "2012-10-30",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideVol1.html",
+    "label": "Guilde de voleurs — niveaux",
+    "captured": "2012-10-30",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideHistoires1.html",
+    "label": "Histoires",
+    "captured": "2012-10-25",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie.html",
+    "label": "Magie",
+    "captured": "2012-11-02",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie2.html",
+    "label": "Magie — détails",
+    "captured": "2012-11-04",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie1.html",
+    "label": "Magie — lancer un sort",
+    "captured": "2013-01-04",
+    "during": true,
+    "status": "changed",
+    "changed": 448
+   },
+   {
+    "file": "GuideNoblesse.html",
+    "label": "Noblesse",
+    "captured": "2012-10-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideNouveau.html",
+    "label": "Nouveauté de l’ère",
+    "captured": "2012-10-24",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuidePeriodes.html",
+    "label": "Périodes",
+    "captured": "2012-10-15",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideDetails.html",
+    "label": "Plus de détails",
+    "captured": "2012-10-15",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuidePayant.html",
+    "label": "Privilèges et oracles",
+    "captured": "2012-10-30",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideRaces.html",
+    "label": "Races",
+    "captured": "2012-10-25",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideRaces1.html",
+    "label": "Races — fiches",
+    "captured": "2013-01-06",
+    "during": true,
+    "status": "changed",
+    "changed": 393
+   },
+   {
+    "file": "GuideRoyaumes.html",
+    "label": "Royaumes",
+    "captured": "2012-10-30",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideSciences.html",
+    "label": "Sciences",
+    "captured": "2012-10-07",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideMilitaire.html",
+    "label": "Unités militaires",
+    "captured": "2012-11-02",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   }
+  ]
+ },
+ {
+  "slug": "immortels",
+  "name": "Immortels",
+  "title": "L’Ère des Immortels",
+  "start": "2013-04-27",
+  "end": "2013-11-26",
+  "gap": true
+ },
+ {
+  "slug": "beta",
+  "name": "Bêta",
+  "title": "L’Ère bêta",
+  "start": "2013-11-26",
+  "end": "2014-01-26",
+  "gap": true
+ },
+ {
+  "slug": "obscure",
+  "name": "Ère obscure",
+  "title": "L’Ère obscure",
+  "start": "2014-01-26",
+  "end": "2014-05-04",
+  "gap": true
+ },
+ {
+  "slug": "domination-2014",
+  "name": "Domination (2014)",
+  "title": "L’Ère de la Domination",
+  "start": "2014-05-04",
+  "end": "2014-12-14",
+  "gap": true
+ },
+ {
+  "slug": "vengeance",
+  "name": "Vengeance",
+  "title": "L’Ère de la Vengeance",
+  "start": "2014-12-14",
+  "end": "2015-03-22",
+  "gap": true
+ },
+ {
+  "slug": "destruction",
+  "name": "Destruction",
+  "title": "L’Ère de la Destruction",
+  "start": "2015-03-22",
+  "end": "2016-03-01",
+  "aside": false,
+  "front": "Guide.html",
+  "menu": false,
+  "frameset": null,
+  "pages": [
+   {
+    "file": "Guide.html",
+    "label": "Accueil du guide",
+    "captured": "2011-10-28",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideVille.html",
+    "label": "Bâtiments",
+    "captured": "2012-10-28",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideCombats.html",
+    "label": "Combats",
+    "captured": "2012-11-02",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideCombats2.html",
+    "label": "Combats — comment attaquer",
+    "captured": "2012-10-09",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideCombats1.html",
+    "label": "Combats — le calcul",
+    "captured": "2012-11-02",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideDebut.html",
+    "label": "Comment débuter",
+    "captured": "2012-10-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideContacts.html",
+    "label": "Contacts",
+    "captured": "2012-08-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuidePrincipes.html",
+    "label": "Description",
+    "captured": "2016-01-23",
+    "during": true,
+    "status": "changed",
+    "changed": 62
+   },
+   {
+    "file": "GuideEconomie.html",
+    "label": "Économie",
+    "captured": "2012-10-10",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideExodes.html",
+    "label": "Exodes",
+    "captured": "2012-10-07",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideExplorations.html",
+    "label": "Explorations",
+    "captured": "2012-10-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideVol.html",
+    "label": "Guilde de voleurs",
+    "captured": "2012-10-30",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideVol1.html",
+    "label": "Guilde de voleurs — niveaux",
+    "captured": "2012-10-30",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideHistoires1.html",
+    "label": "Histoires",
+    "captured": "2012-10-25",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie.html",
+    "label": "Magie",
+    "captured": "2012-11-02",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie2.html",
+    "label": "Magie — détails",
+    "captured": "2012-11-04",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideMagie1.html",
+    "label": "Magie — lancer un sort",
+    "captured": "2013-01-04",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideNoblesse.html",
+    "label": "Noblesse",
+    "captured": "2012-10-08",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideNouveau.html",
+    "label": "Nouveauté de l’ère",
+    "captured": "2012-10-24",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuidePeriodes.html",
+    "label": "Périodes",
+    "captured": "2012-10-15",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideDetails.html",
+    "label": "Plus de détails",
+    "captured": "2012-10-15",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuidePayant.html",
+    "label": "Privilèges et oracles",
+    "captured": "2012-10-30",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideRaces.html",
+    "label": "Races",
+    "captured": "2012-10-25",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideRaces1.html",
+    "label": "Races — fiches",
+    "captured": "2013-01-06",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideRoyaumes.html",
+    "label": "Royaumes",
+    "captured": "2012-10-30",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideSciences.html",
+    "label": "Sciences",
+    "captured": "2012-10-07",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   },
+   {
+    "file": "GuideMilitaire.html",
+    "label": "Unités militaires",
+    "captured": "2012-11-02",
+    "during": false,
+    "status": "same",
+    "changed": 0
+   }
+  ]
+ },
+ {
   "slug": "domination",
   "name": "Domination (2006)",
   "title": "Domination (2006)",
@@ -3441,6 +4434,7 @@ const ERES = [
   "aside": true,
   "front": "GuideDepart.htm",
   "menu": true,
+  "frameset": "Guide.htm",
   "pages": [
    {
     "file": "GuideBatiment.htm",
@@ -3534,50 +4528,6 @@ const ERES = [
     "file": "GuideVoleur.htm",
     "label": "Vol",
     "captured": "2006-11-01",
-    "during": true,
-    "status": "new",
-    "changed": 0
-   }
-  ]
- },
- {
-  "slug": "brouillon-trahisons",
-  "name": "Brouillon des Trahisons (2004)",
-  "title": "Brouillon des Trahisons (2004)",
-  "start": "2004-11-05",
-  "end": "2004-11-05",
-  "aside": true,
-  "front": "GuideDepart.htm",
-  "menu": false,
-  "pages": [
-   {
-    "file": "GuideDepart.htm",
-    "label": "Départ",
-    "captured": "2004-11-05",
-    "during": true,
-    "status": "new",
-    "changed": 0
-   },
-   {
-    "file": "GuideHistoireMain.htm",
-    "label": "Histoire",
-    "captured": "2004-11-05",
-    "during": true,
-    "status": "new",
-    "changed": 0
-   },
-   {
-    "file": "GuideMagie.htm",
-    "label": "Magie",
-    "captured": "2004-11-05",
-    "during": true,
-    "status": "new",
-    "changed": 0
-   },
-   {
-    "file": "GuideRaces.htm",
-    "label": "Races",
-    "captured": "2004-11-05",
     "during": true,
     "status": "new",
     "changed": 0

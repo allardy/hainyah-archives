@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Le guide, ère par ère — Archives HainyaH</title>
-<meta name="description" content="Le guide des joueurs de HainyaH tel qu'il était à la fin de chaque ère, de 2003 à 2009, avec ce qui a changé d'une ère à l'autre.">
+<meta name="description" content="Le guide des joueurs de HainyaH tel qu'il était à la fin de chaque ère, de 2003 à 2016, avec ce qui a changé d'une ère à l'autre.">
 <link rel="icon" href="../../favicon.ico">
 <link rel="stylesheet" href="../../archive.css">
 <style>
@@ -13,6 +13,8 @@
   header { flex: none; min-width: 0; max-width: 100vw; border-bottom: 1px solid var(--edge); background: var(--panel); }
   .bar { border: 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: baseline; }
   .bar .sep { color: var(--edge); }
+  .bar label { margin-left: auto; font-size: 13px; color: var(--ink-soft); cursor: pointer; }
+  .timeline:not(.with-gaps) .gap { display: none; }
   .timeline { display: flex; gap: 4px; overflow-x: auto; padding: 4px 16px 10px; scrollbar-width: thin; }
   .timeline button, .timeline a {
     flex: none; display: flex; flex-direction: column; align-items: flex-start; gap: 0;
@@ -24,7 +26,8 @@
   .timeline button.gap { border-style: dashed; color: #6b6950; cursor: default; }
   .timeline button.gap small { color: #55533f; }
   .timeline button:not(.gap):hover, .timeline a:hover { border-color: var(--ink-soft); }
-  .timeline .divider { flex: none; width: 1px; background: var(--edge); margin: 2px 6px; }
+  .timeline .aside { background: none; font-style: italic; }
+  .timeline .aside small { font-style: normal; }
   .era { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; padding: 0 16px 10px; font-size: 14px; }
   .era h1 { font-size: 20px; margin: 0; }
   .era .meta { color: var(--ink-soft); min-width: 0; }
@@ -65,7 +68,8 @@
   <div class="bar">
     <a href="../../index.html">Archives HainyaH</a><span class="sep">/</span>
     <a href="../Guide.htm">Le guide</a><span class="sep">/</span>
-    <span>Ère par ère, 2003–2009</span>
+    <span>Ère par ère, 2003–2016</span>
+    <label><input type="checkbox" id="show-gaps"> Montrer les ères sans guide</label>
   </div>
   <div class="timeline" id="timeline" role="tablist" aria-label="Ères"></div>
   <div class="era">
@@ -99,27 +103,43 @@
   let page = null
   let diff = false
 
+  // The guides beside the main line, and the complete 2010 guide, sit on the timeline at their own date; Précédente and Suivante skip them.
   const timeline = $('timeline')
-  let asideStarted = false
-  for (const e of ERES) {
-    if (e.aside && !asideStarted) {
-      asideStarted = true
-      timeline.append(Object.assign(document.createElement('span'), { className: 'divider' }))
+  const full = { slug: 'complet', name: 'Le guide de 2010', start: '2010-06-09', link: '../Guide.htm' }
+  const items = ERES.filter((e) => !e.aside)
+  for (const e of [full, ...ERES.filter((e) => e.aside)]) {
+    const at = items.findIndex((m) => !m.aside && !m.link && m.start > e.start)
+    items.splice(at < 0 ? items.length : at, 0, e)
+  }
+  for (const e of items) {
+    const b = document.createElement(e.link ? 'a' : 'button')
+    b.innerHTML = `${e.name}<small>${e.start.slice(0, 4)}${e.aside ? ' · à part' : e.link ? ' · complet' : ''}</small>`
+    if (e.link) Object.assign(b, { href: e.link, target: '_blank', rel: 'noopener', className: 'aside' })
+    else {
+      b.type = 'button'
+      b.dataset.slug = e.slug
+      if (e.aside) b.className = 'aside'
+      if (e.gap) {
+        b.className = 'gap'
+        b.title = `${e.title} : aucune capture du guide pendant cette ère`
+        b.setAttribute('aria-disabled', 'true')
+      } else b.onclick = () => open(e.slug, page)
     }
-    const b = document.createElement('button')
-    b.type = 'button'
-    b.dataset.slug = e.slug
-    b.innerHTML = `${e.name}<small>${e.aside ? 'à part' : e.start.slice(0, 4)}</small>`
-    if (e.gap) {
-      b.className = 'gap'
-      b.title = `${e.title} : aucune capture du guide pendant cette ère`
-      b.setAttribute('aria-disabled', 'true')
-    } else b.onclick = () => open(e.slug, page)
     timeline.append(b)
   }
-  const full = Object.assign(document.createElement('a'), { href: '../Guide.htm', target: '_blank', rel: 'noopener' })
-  full.innerHTML = 'Le guide de 2010<small>complet</small>'
-  timeline.append(full)
+
+  // Per-viewer convenience only: storage can be missing or throw, and the page then simply starts with the gaps hidden.
+  const showGaps = $('show-gaps')
+  try {
+    showGaps.checked = localStorage.getItem('eres.showGaps') === '1'
+  } catch {}
+  timeline.classList.toggle('with-gaps', showGaps.checked)
+  showGaps.onchange = () => {
+    timeline.classList.toggle('with-gaps', showGaps.checked)
+    try {
+      localStorage.setItem('eres.showGaps', showGaps.checked ? '1' : '0')
+    } catch {}
+  }
 
   const find = (file) => era.pages.find((p) => p.file.toLowerCase() === (file ?? '').toLowerCase())
 
@@ -167,12 +187,12 @@
       box.append(Object.assign(document.createElement('span'), { className: 'what', textContent: 'Aucune page n’a changé pendant cette ère.' }))
     }
     $('pages').replaceChildren(...era.pages.map((p) => new Option(p.label, p.file)))
-    $('original').href = `${era.slug}/Guide.htm`
   }
 
   const renderPage = () => {
     const p = find(page)
     $('pages').value = page
+    $('original').href = `${era.slug}/${era.frameset ?? page}`
     $('page-name').textContent = p ? p.label : page
     const bits = []
     if (p) {
